@@ -9,10 +9,9 @@ function loadInitialState() {
 
       // Default events
       loadDefaultEvents();
-      console.log(localStorage);
-
       localStorage.setItem("initialized", true);
     }
+    console.log(localStorage);
 }
 
 function loadDefaultEvents() {

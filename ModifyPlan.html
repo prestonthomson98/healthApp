@@ -50,7 +50,7 @@
     </div>
     <div class="form-floating mb-3">
       <input type="text" class="form-control" id="heightInput" placeholder="6 ft" name="height" required>
-      <label for="floatingPassword">Height</label>
+      <label for="floatingInput">Height</label>
     </div>
     <div class="mb-3">
       <select class="form-select" aria-label="Select goal" id="goalInput" name="goal" required>
@@ -85,8 +85,18 @@
     </div>
 
     <div class="form-floating mb-3">
+      <input type="time" id="wakeup-time" class="form-control" name="wakeup-time" min="00:00" max="23:59" required>
+      <label for="floatingInput">Wakeup Time</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="time" id="bed-time" class="form-control" name="bed-time" min="00:00" max="23:59" required>
+      <label for="floatingInput">Bed Time</label>
+    </div>
+
+    <div class="form-floating mb-3">
       <input type="number" step="1" min="1" max="60" class="form-control" id="timeInput" name="time" placeholder="30" required>
-      <label for="floatingPassword">Exercise Time (in minutes)</label>
+      <label for="floatingInput">Exercise Time (in minutes)</label>
     </div>
     
     <button type="submit" class="btn btn-primary">Modify Plan</button>
