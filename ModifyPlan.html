@@ -28,77 +28,74 @@
 </nav>
   
 <div class="container">
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center" style="margin-top: 2%; margin-bottom: 2%;">
     <h1>Modify Plan</h1>
   </div>
-  <form>
+  <form id="modifyPlanForm">
     <div class="mb-3">
-      <label for="sexLabel" class="form-label">Sex: </label>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="sexMaleInput" value="male">
-        <label class="form-check-label" for="sexMale">Male</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="sexFemaleInput" value="female">
-        <label class="form-check-label" for="sexFemale">Female</label>
-      </div>
+      <select class="form-select" aria-label="Select Sex" id="sexInput" name="sexInput" required>
+        <option value="" disabled selected>Select Sex</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="weightInput" placeholder="100 lb">
+      <input type="text" class="form-control" id="weightInput" placeholder="100 lb" name="weightInput" required>
       <label for="floatingInput">Weight</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="heightInput" placeholder="6 ft">
+      <input type="text" class="form-control" id="heightInput" placeholder="6 ft" name="heightInput" required>
       <label for="floatingPassword">Height</label>
     </div>
     <div class="mb-3">
-      <select class="form-select" aria-label="Select goal" id="goalInput">
-        <option selected>Select a Goal</option>
-        <option value="1">Lose Weight</option>
-        <option value="2">Achieving a new personal best</option>
-        <option value="3">Three</option>
+      <select class="form-select" aria-label="Select goal" id="goalInput" name="goalInput" required>
+        <option value="" disabled selected>Select a Goal</option>
+        <option value="goal1">Lose Weight</option>
+        <option value="goal2">Achieving a new personal best</option>
+        <option value="goal3">Become more active</option>
+        <option value="goal4">Learn a new sport</option>
       </select>
     </div>
 
     <div class="mb-3">
-      <select class="form-select" aria-label="Select Exercise" id="exerciseInput">
-        <option selected>Select an Exercise</option>
-        <option value="1">Running</option>
-        <option value="2">Walking</option>
-        <option value="3">Biking</option>
-        <option value="3">Swimming</option>
-        <option value="3">Push-ups</option>
-        <option value="3">Pull-ups</option>
-        <option value="3">Benchpress</option>
-        <option value="3">Deadlift</option>
+      <select class="form-select" aria-label="Select Exercise" id="exerciseInput" name="exerciseInput" required>
+        <option value="" disabled selected>Select an Exercise</option>
+        <option value="run">Running</option>
+        <option value="walk">Walking</option>
+        <option value="bike">Biking</option>
+        <option value="swim">Swimming</option>
+        <option value="pushup">Push-ups</option>
+        <option value="pullup">Pull-ups</option>
+        <option value="benchpress">Benchpress</option>
+        <option value="deadlift">Deadlift</option>
+      </select>
+      <small id="exerciseInputHelp" class="form-text text-muted">See a list of Hability supported exercises <a href="./WorkoutInfo.html">here</a>.</small>
+    </div>
+
+    <div class="mb-3">
+      <select class="form-select" aria-label="Select Day or Night" id="dayOrNightInput" name="dayOrNightInput" required>
+        <option value="" disabled selected>Early Bird or Night Owl?</option>
+        <option value="day">Early Bird</option>
+        <option value="night">Night Owl</option>
       </select>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="timeInput" placeholder="30">
-      <label for="floatingPassword">Workout Time (in minutes)</label>
+      <input type="text" class="form-control" id="timeInput" name="timeInput" placeholder="30" required>
+      <label for="floatingPassword">Exercise Time (in minutes)</label>
     </div>
     
     <button type="submit" class="btn btn-primary">Modify Plan</button>
   </form>
-  <!-- <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-  </div> -->
 </div>
-
 </body>
+<script>
+  $("#modifyPlanForm").submit((e) => {
+    const formData = new FormData(e.target);
+    for(var pair of formData.entries()) {
+      console.log(pair[0]+ ', '+ pair[1]);
+    }
+    return false;
+  });
+</script>
 </html>
