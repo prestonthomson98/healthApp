@@ -29,7 +29,7 @@ function loadDefaultEvents() {
   let long_lunch = {
     "start_time": "11:45",
     "end_time": "12:35",
-    "event_name": "Lunch",
+    "event_name": "SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH ",
     "event_type": "meal",
     "description": "mid day meal baby",
   }
@@ -37,7 +37,7 @@ function loadDefaultEvents() {
   let thursday_lunch = {
     "start_time": "12:15",
     "end_time": "12:55",
-    "event_name": "Lunch",
+    "event_name": "Lunch w/ Greg",
     "event_type": "meal",
     "description": "mid day meal baby",
   }
@@ -71,10 +71,15 @@ function generateCalendarEvents() {
     let dayNewEventsHTML = [];
 
     dayEventsInfo.forEach(newEventInfo => {
+      let eventName = newEventInfo.event_name;
+      if (eventName.length > 16) {
+        eventName = eventName.substring(0, 16) + "...";
+      }
+
       let newEventHTML = `<li class="cd-schedule__event">`;
 
       newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="event-1" href="#0">`;
-      newEventHTML += `<em class="cd-schedule__name">${newEventInfo.event_name}</em>`;
+      newEventHTML += `<em class="cd-schedule__name">${eventName}</em>`;
       newEventHTML += `</a>`;
       newEventHTML += `</li>`;
 
