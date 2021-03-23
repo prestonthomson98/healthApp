@@ -8,6 +8,7 @@
   <script src="./assets/js/handleState.js" type="text/javascript"></script>
   <script src="./bootstrap/js/jquery.min.js"></script>
   <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+  <link href="./fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
 
@@ -28,9 +29,98 @@
   </div>
 </nav>
   
-<div class="container">
-  <div class="jumbotron text-center">
+<div class="container" style="margin-bottom: 2%;">
+  <div class="jumbotron text-center" style="margin-top: 2%; margin-bottom: 2%;">
     <h1>Workout Cheatsheet</h1>
+  </div>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <b style="color: lightcoral"><i class="fas fa-running"></i> &nbsp;&nbsp; Running</b>
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Running info
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <b style="color: lightcoral"><i class="fas fa-walking"></i> &nbsp;&nbsp; Walking</b>
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Walking info
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <b style="color: lightcoral"><i class="fas fa-biking"></i> &nbsp;&nbsp; Biking</b>
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Biking info
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          <b style="color: lightcoral"><i class="fas fa-swimmer"></i> &nbsp;&nbsp; Swimming</b>
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Swimming info
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFive">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          <b style="color: lightcoral"><i class="fas fa-basketball-ball"></i> &nbsp;&nbsp; Basketball </b>
+        </button>
+      </h2>
+      <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Basketball info
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingSix">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          <b style="color: lightcoral">
+            <i class="fas fa-pray"
+            style="-webkit-transform:rotate(-110deg); -moz-transform: rotate(-110deg); -ms-transform: rotate(-110deg); -o-transform: rotate(-110deg); transform: rotate(-110deg);">
+            </i> &nbsp;&nbsp; Sit-ups</b>
+        </button>
+      </h2>
+      <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Sit-ups info
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingSeven">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+          <b style="color: lightcoral"><i class="fas fa-dumbbell"></i> &nbsp;&nbsp; Dumbbells</b>
+        </button>
+      </h2>
+      <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Dumbbells info
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
