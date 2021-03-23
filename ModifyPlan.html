@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <script src="./assets/js/handleState.js" type="text/javascript"></script>
   <script src="./bootstrap/js/jquery.min.js"></script>
   <script src="./bootstrap/js/bootstrap.bundle.js"></script>
 </head>
@@ -32,33 +33,37 @@
     <h1>Modify Plan</h1>
   </div>
   <form id="modifyPlanForm">
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="nameInput" placeholder="CMSC434 Student" name="name" required>
+      <label for="floatingInput">Name</label>
+    </div>
     <div class="mb-3">
-      <select class="form-select" aria-label="Select Sex" id="sexInput" name="sexInput" required>
+      <select class="form-select" aria-label="Select Sex" id="sexInput" name="sex" required>
         <option value="" disabled selected>Select Sex</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="weightInput" placeholder="100 lb" name="weightInput" required>
+      <input type="text" class="form-control" id="weightInput" placeholder="100 lb" name="weight" required>
       <label for="floatingInput">Weight</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="heightInput" placeholder="6 ft" name="heightInput" required>
+      <input type="text" class="form-control" id="heightInput" placeholder="6 ft" name="height" required>
       <label for="floatingPassword">Height</label>
     </div>
     <div class="mb-3">
-      <select class="form-select" aria-label="Select goal" id="goalInput" name="goalInput" required>
+      <select class="form-select" aria-label="Select goal" id="goalInput" name="goal" required>
         <option value="" disabled selected>Select a Goal</option>
-        <option value="goal1">Lose Weight</option>
-        <option value="goal2">Achieving a new personal best</option>
-        <option value="goal3">Become more active</option>
-        <option value="goal4">Learn a new sport</option>
+        <option value="lose-weight">Lose Weight</option>
+        <option value="personal-best">Achieving a new personal best</option>
+        <option value="more-active">Become more active</option>
+        <option value="learn-new-sport">Learn a new sport</option>
       </select>
     </div>
 
     <div class="mb-3">
-      <select class="form-select" aria-label="Select Exercise" id="exerciseInput" name="exerciseInput" required>
+      <select class="form-select" aria-label="Select Exercise" id="exerciseInput" name="exercise" required>
         <option value="" disabled selected>Select an Exercise</option>
         <option value="run">Running</option>
         <option value="walk">Walking</option>
@@ -73,7 +78,7 @@
     </div>
 
     <div class="mb-3">
-      <select class="form-select" aria-label="Select Day or Night" id="dayOrNightInput" name="dayOrNightInput" required>
+      <select class="form-select" aria-label="Select Day or Night" id="dayOrNightInput" name="dayOrNight" required>
         <option value="" disabled selected>Early Bird or Night Owl?</option>
         <option value="day">Early Bird</option>
         <option value="night">Night Owl</option>
@@ -81,7 +86,7 @@
     </div>
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="timeInput" name="timeInput" placeholder="30" required>
+      <input type="number" step="1" class="form-control" id="timeInput" name="time" placeholder="30" required>
       <label for="floatingPassword">Exercise Time (in minutes)</label>
     </div>
     
@@ -90,10 +95,11 @@
 </div>
 </body>
 <script>
+  loadInitialState();
   $("#modifyPlanForm").submit((e) => {
     const formData = new FormData(e.target);
     for(var pair of formData.entries()) {
-      console.log(pair[0]+ ', '+ pair[1]);
+      localStorage.setItem(pair[0], pair[1]);
     }
     return false;
   });
