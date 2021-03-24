@@ -11,10 +11,14 @@ function loadInitialState() {
 
     // Default settings
     localStorage.setItem("name", "CMSC 434 Student");
+    localStorage.setItem("sex", "male");
+    localStorage.setItem("weight", "130 lbs");
+    localStorage.setItem("height", "6 ft");
+    localStorage.setItem("goal", "personal-best");
     localStorage.setItem("exercise", "run");
     localStorage.setItem("dayOrNight", "day");
     localStorage.setItem("duration", 60);
-    localStorage.setItem("earliest_start", "7:00");
+    localStorage.setItem("earliest_start", "07:00");
     localStorage.setItem("latest_start", "20:45");
 
     // Default events
