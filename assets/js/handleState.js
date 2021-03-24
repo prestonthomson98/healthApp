@@ -135,6 +135,7 @@ function clearWorkouts() {
 
 function generateWorkouts() {
   clearWorkouts();
+  const bufferMinutes = 15;
   let allEvents = JSON.parse(localStorage.getItem("events"));
 
   for (let dayOfWeek in allEvents) {
@@ -143,15 +144,15 @@ function generateWorkouts() {
 
     const free_intervals = []
 
-    free_intervals.push({ "start_time": convertTimeToSeconds("00:00"), "end_time": convertTimeToSeconds(dayEventsInfo[0]["start_time"])-60 });
+    free_intervals.push({ "start_time": convertTimeToSeconds("00:00"), "end_time": convertTimeToSeconds(dayEventsInfo[0]["start_time"]) - 60*bufferMinutes });
     for (let i = 1; i < dayEventsInfo.length; i++) {
-      let prevEnd = convertTimeToSeconds(dayEventsInfo[i-1]["end_time"]) + 60;
-      let currStart = convertTimeToSeconds(dayEventsInfo[i]["start_time"]) - 60;
+      let prevEnd = convertTimeToSeconds(dayEventsInfo[i-1]["end_time"]) + 60*bufferMinutes;
+      let currStart = convertTimeToSeconds(dayEventsInfo[i]["start_time"]) - 60*bufferMinutes;
       if(prevEnd < currStart) {
         free_intervals.push({ "start_time": prevEnd, "end_time": currStart });
       }
     }
-    free_intervals.push({ "start_time": convertTimeToSeconds(dayEventsInfo[dayEventsInfo.length-1]["end_time"])+60, "end_time": convertTimeToSeconds("23:59") });
+    free_intervals.push({ "start_time": convertTimeToSeconds(dayEventsInfo[dayEventsInfo.length-1]["end_time"]) + 60*bufferMinutes, "end_time": convertTimeToSeconds("23:59") });
 
     const exerciseDurationSeconds = parseInt(localStorage.getItem("duration"))*60;
     let startTimeSeconds = convertTimeToSeconds(localStorage.getItem("earliest_start"));
@@ -199,7 +200,7 @@ function generateWorkouts() {
           dayEventsInfo.push({
             "start_time": convertSecondsToTime(startTimeSeconds),
             "end_time": convertSecondsToTime(endTimeSeconds),
-            "event_name": `${capitalizeString(dayOfWeek)} ${localStorage.getItem("exercise")}`,
+            "event_name": `${dayAbbrevations[dayOfWeek]} ${localStorage.getItem("exercise")}`,
             "event_type": "workout",
             "description": "Hability generated workout!",
           })
@@ -208,7 +209,7 @@ function generateWorkouts() {
           dayEventsInfo.push({
             "start_time": convertSecondsToTime(free_intervals[i]["start_time"]),
             "end_time": convertSecondsToTime(free_intervals[i]["start_time"] + exerciseDurationSeconds),
-            "event_name": `${capitalizeString(dayOfWeek)} ${localStorage.getItem("exercise")}`,
+            "event_name": `${dayAbbrevations[dayOfWeek]} ${localStorage.getItem("exercise")}`,
             "event_type": "workout",
             "description": "Hability generated workout!",
           })
@@ -221,6 +222,7 @@ function generateWorkouts() {
         }
       }
     }
+    dayEventsInfo.sort((a, b) => convertTimeToSeconds(a.start_time) - convertTimeToSeconds(b.start_time));
   }
   localStorage.setItem("events", JSON.stringify(allEvents));
 }
