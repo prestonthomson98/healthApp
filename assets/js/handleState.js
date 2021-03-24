@@ -187,7 +187,7 @@ function generateWorkouts() {
           if(i-1 >= 0) {
             startTimeSeconds = free_intervals[i-1]["start_time"] - exerciseDurationSeconds;
             endTimeSeconds = free_intervals[i-1]["start_time"];
-          } 
+          }
         }
       }
     } else {
@@ -217,7 +217,7 @@ function generateWorkouts() {
           if(i+1 < free_intervals.length) {
             startTimeSeconds = free_intervals[i+1]["start_time"];
             endTimeSeconds = startTimeSeconds + exerciseDurationSeconds;
-          } 
+          }
         }
       }
     }
@@ -239,9 +239,15 @@ function generateCalendarEvents() {
         eventName = eventName.substring(0, 16) + "...";
       }
 
+      let eventTypeIndex = {
+        "meal": "event-1",
+        "event": "event-2",
+        "workout": "event-4",
+      };
+
       let newEventHTML = `<li class="cd-schedule__event">`;
 
-      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="event-1" href="#0">`;
+      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0">`;
       newEventHTML += `<em class="cd-schedule__name">${eventName}</em>`;
       newEventHTML += `</a>`;
       newEventHTML += `</li>`;
