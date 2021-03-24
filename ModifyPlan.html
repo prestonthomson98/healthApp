@@ -37,6 +37,7 @@
       <input type="text" class="form-control" id="nameInput" placeholder="CMSC434 Student" name="name" required>
       <label for="floatingInput">Name</label>
     </div>
+
     <div class="mb-3">
       <select class="form-select" aria-label="Select Sex" id="sexInput" name="sex" required>
         <option value="" disabled selected>Select Sex</option>
@@ -44,14 +45,17 @@
         <option value="female">Female</option>
       </select>
     </div>
+
     <div class="form-floating mb-3">
       <input type="text" class="form-control" id="weightInput" placeholder="100 lb" name="weight" required>
       <label for="floatingInput">Weight</label>
     </div>
+
     <div class="form-floating mb-3">
       <input type="text" class="form-control" id="heightInput" placeholder="6 ft" name="height" required>
       <label for="floatingInput">Height</label>
     </div>
+
     <div class="mb-3">
       <select class="form-select" aria-label="Select goal" id="goalInput" name="goal" required>
         <option value="" disabled selected>Select a Goal</option>
@@ -70,8 +74,8 @@
         <option value="bike">Biking</option>
         <option value="swim">Swimming</option>
         <option value="basketball">Basketball</option>
-        <option value="situp">Sit-ups</option>
-        <option value="dumbbell">Dumbbells</option>
+        <option value="situps">Sit-ups</option>
+        <option value="dumbbells">Dumbbells</option>
       </select>
       <small id="exerciseInputHelp" class="form-text text-muted">See a list of Hability supported exercises <a href="./WorkoutInfo.html">here</a>.</small>
     </div>
@@ -85,18 +89,18 @@
     </div>
 
     <div class="form-floating mb-3">
-      <input type="time" id="wakeup-time" class="form-control" name="wakeup-time" min="00:00" max="23:59" required>
-      <label for="floatingInput">Wakeup Time</label>
+      <input type="time" id="earliest_start" class="form-control" name="earliest_start" min="00:00" max="23:59" required>
+      <label for="floatingInput">Earliest Possible Start Time</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="time" id="bed-time" class="form-control" name="bed-time" min="00:00" max="23:59" required>
-      <label for="floatingInput">Bed Time</label>
+      <input type="time" id="latest_start" class="form-control" name="latest_start" min="00:00" max="23:59" required>
+      <label for="floatingInput">Latest Possible Start Time</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="number" step="1" min="1" max="60" class="form-control" id="timeInput" name="time" placeholder="30" required>
-      <label for="floatingInput">Exercise Time (in minutes)</label>
+      <input type="number" step="1" min="1" max="60" class="form-control" id="durationInput" name="duration" placeholder="30" required>
+      <label for="floatingInput">Exercise Duration (in minutes)</label>
     </div>
     
     <button type="submit" class="btn btn-primary">Modify Plan</button>
@@ -105,6 +109,36 @@
 </body>
 <script>
   loadInitialState();
+  if(localStorage.getItem("name") !== null) {
+    document.getElementById("nameInput").value = localStorage.getItem("name");
+  }
+  if(localStorage.getItem("sex") !== null) {
+    document.getElementById("sexInput").value = localStorage.getItem("sex");
+  }
+  if(localStorage.getItem("weight") !== null) {
+    document.getElementById("weightInput").value = localStorage.getItem("weight");
+  }
+  if(localStorage.getItem("height") !== null) {
+    document.getElementById("heightInput").value = localStorage.getItem("height");
+  }
+  if(localStorage.getItem("goal") !== null) {
+    document.getElementById("goalInput").value = localStorage.getItem("goal");
+  }
+  if(localStorage.getItem("exercise") !== null) {
+    document.getElementById("exerciseInput").value = localStorage.getItem("exercise");
+  }
+  if(localStorage.getItem("dayOrNight") !== null) {
+    document.getElementById("dayOrNightInput").value = localStorage.getItem("dayOrNight");
+  }
+  if(localStorage.getItem("earliest_start") !== null) {
+    document.getElementById("earliest_start").value = localStorage.getItem("earliest_start");
+  }
+  if(localStorage.getItem("latest_start") !== null) {
+    document.getElementById("latest_start").value = localStorage.getItem("latest_start");
+  }
+  if(localStorage.getItem("duration") !== null) {
+    document.getElementById("durationInput").value = localStorage.getItem("duration");
+  }
   $("#modifyPlanForm").submit((e) => {
     const formData = new FormData(e.target);
     for(var pair of formData.entries()) {
