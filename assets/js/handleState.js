@@ -306,7 +306,7 @@ function generateCalendarEvents() {
       let newEventHTML = `<li class="cd-schedule__event">`;
 
       console.log(newEventInfo.event_id)
-      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0" onclick="banana('${newEventInfo.event_id}');">`;
+      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0" onclick="setInspectedEvent('${newEventInfo.event_id}');">`;
       newEventHTML += `<em class="cd-schedule__name">${eventName}</em>`;
       newEventHTML += `</a>`;
       newEventHTML += `</li>`;
@@ -326,7 +326,8 @@ function uuidv4() {
   });
 }
 
-function banana(event_id) {
+function setInspectedEvent(event_id) {
+  localStorage.set("inspect_event", event_id);
   console.log(event_id);
   alert("HELLO! EVent is " + event_id)
 }
