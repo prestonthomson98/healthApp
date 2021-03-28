@@ -47,22 +47,21 @@
     </div>
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="weightInput" placeholder="100 lb" name="weight" required>
-      <label for="floatingInput">Weight</label>
+      <input type="number" step="1" min="1" max="200" class="form-control" id="ageInput" placeholder="21" name="age" required>
+      <label for="floatingInput">Age (in years)</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="heightInput" placeholder="6 ft" name="height" required>
-      <label for="floatingInput">Height</label>
+      <input type="number" step="1" min="1" max="1000" class="form-control" id="weightInput" placeholder="100" name="weight" required>
+      <label for="floatingInput">Weight (in pounds)</label>
     </div>
 
     <div class="mb-3">
       <select class="form-select" aria-label="Select goal" id="goalInput" name="goal" required>
         <option value="" disabled selected>Select a Goal</option>
-        <option value="lose-weight">Lose Weight</option>
-        <option value="personal-best">Achieving a new personal best</option>
-        <option value="more-active">Become more active</option>
-        <option value="learn-new-sport">Learn a new sport</option>
+        <option value="lose-weight">Lose weight</option>
+        <option value="build-muscles">Build muscles</option>
+        <option value="improve-endurance">Improve endurance</option>
       </select>
     </div>
 
@@ -115,11 +114,11 @@
   if(localStorage.getItem("sex") !== null) {
     document.getElementById("sexInput").value = localStorage.getItem("sex");
   }
+  if(localStorage.getItem("age") !== null) {
+    document.getElementById("ageInput").value = localStorage.getItem("age");
+  }
   if(localStorage.getItem("weight") !== null) {
     document.getElementById("weightInput").value = localStorage.getItem("weight");
-  }
-  if(localStorage.getItem("height") !== null) {
-    document.getElementById("heightInput").value = localStorage.getItem("height");
   }
   if(localStorage.getItem("goal") !== null) {
     document.getElementById("goalInput").value = localStorage.getItem("goal");

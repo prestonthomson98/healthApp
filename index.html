@@ -40,6 +40,18 @@
   </div>
 </div>
 
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+  <div id="workoutNotification" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="30000">
+    <div class="toast-header">
+      <strong class="me-auto">Exercise time!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="notificationBody">
+      It's time for your daily workout!
+    </div>
+  </div>
+</div>
+
 <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
   <!-- .cd-schedule__timeline -->
   <div class="cd-schedule__events">
@@ -158,7 +170,6 @@
   });
   </script>
 </div>
-
 
 </body>
 <script>

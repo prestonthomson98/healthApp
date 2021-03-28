@@ -37,19 +37,39 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <b style="color: lightcoral"><i class="fas fa-running"></i> &nbsp;&nbsp; Running</b>
+          <b style="color: lightcoral" id="runningHeader"><i class="fas fa-running"></i> &nbsp;&nbsp; Running</b>
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          Running info
+          <div>
+            <b>Recommended goals: </b> Running is the perfect exercise for losing weight and improving your endurance.
+          </div>
+          <div>
+            <b>Average calories burned: </b> Average of 350 calories burned per hour of running!
+          </div>
+          <div>
+            <b>Tips for beginners: </b> Improving your running form can help you run faster, more efficiently and comfortably, and with less stress 
+            on your body and reduced injury risk. Proper running form reduces your risk of fatigue and ensures that you are getting the most out of your run.
+            Follow these tips to work on perfecting your form.
+            <ol>
+              <li>Look Ahead</li>
+              <li>Keep Hands at Your Waist</li>
+              <li>Relax Your Hands</li>
+              <li>Check Your Posture</li>
+              <li>Relax Your Shoulders</li>
+              <li>Keep Your Arms at Your Sides</li>
+              <li>Rotate Your Arms From the Shoulder</li>
+              <li>Don't Bounce</li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingTwo">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <b style="color: lightcoral"><i class="fas fa-walking"></i> &nbsp;&nbsp; Walking</b>
+          <b style="color: lightcoral" id="walkingHeader"><i class="fas fa-walking"></i> &nbsp;&nbsp; Walking</b>
         </button>
       </h2>
       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -61,7 +81,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingThree">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <b style="color: lightcoral"><i class="fas fa-biking"></i> &nbsp;&nbsp; Biking</b>
+          <b style="color: lightcoral" id="bikingHeader"><i class="fas fa-biking"></i> &nbsp;&nbsp; Biking</b>
         </button>
       </h2>
       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -73,7 +93,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingFour">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-          <b style="color: lightcoral"><i class="fas fa-swimmer"></i> &nbsp;&nbsp; Swimming</b>
+          <b style="color: lightcoral" id="swimmingHeader"><i class="fas fa-swimmer"></i> &nbsp;&nbsp; Swimming</b>
         </button>
       </h2>
       <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
@@ -85,7 +105,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingFive">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-          <b style="color: lightcoral"><i class="fas fa-basketball-ball"></i> &nbsp;&nbsp; Basketball </b>
+          <b style="color: lightcoral" id="basketballHeader"><i class="fas fa-basketball-ball"></i> &nbsp;&nbsp; Basketball </b>
         </button>
       </h2>
       <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
@@ -97,7 +117,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingSix">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-          <b style="color: lightcoral">
+          <b style="color: lightcoral" id="situpHeader">
             <i class="fas fa-pray"
             style="-webkit-transform:rotate(-110deg); -moz-transform: rotate(-110deg); -ms-transform: rotate(-110deg); -o-transform: rotate(-110deg); transform: rotate(-110deg);">
             </i> &nbsp;&nbsp; Sit-ups</b>
@@ -112,7 +132,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingSeven">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-          <b style="color: lightcoral"><i class="fas fa-dumbbell"></i> &nbsp;&nbsp; Dumbbells</b>
+          <b style="color: lightcoral" id="dumbbellHeader"><i class="fas fa-dumbbell"></i> &nbsp;&nbsp; Dumbbells</b>
         </button>
       </h2>
       <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
@@ -127,5 +147,6 @@
 </body>
 <script>
   loadInitialState();
+  showRecommendedExercises();
 </script>
 </html>
