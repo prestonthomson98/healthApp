@@ -6,15 +6,25 @@ const dayAbbrevations = {
   "friday": "Fri.",
 }
 
+const caloriesBurnedMap = {
+  "run": 350,
+  "walk": 285,
+  "bike": 600,
+  "swim": 500,
+  "basketball": 300,
+  "situps": 400,
+  "dumbbells": 200,
+}
+
 function loadInitialState() {
   if (localStorage.getItem("initialized") === null) {
 
     // Default settings
     localStorage.setItem("name", "CMSC 434 Student");
     localStorage.setItem("sex", "male");
-    localStorage.setItem("weight", "130 lbs");
-    localStorage.setItem("height", "6 ft");
-    localStorage.setItem("goal", "personal-best");
+    localStorage.setItem("age", "21");
+    localStorage.setItem("weight", "130");
+    localStorage.setItem("goal", "lose-weight");
     localStorage.setItem("exercise", "run");
     localStorage.setItem("dayOrNight", "day");
     localStorage.setItem("duration", 60);
@@ -26,6 +36,33 @@ function loadInitialState() {
     localStorage.setItem("initialized", true);
   }
   console.log(localStorage);
+}
+
+function showNotification() {
+  new bootstrap.Toast(document.getElementById('workoutNotification')).show();
+}
+
+function showRecommendedExercises() {
+  recommendedExercises = [];
+  if(localStorage.getItem("goal") === "lose-weight") {
+    recommendedExercises.push("runningHeader");
+    recommendedExercises.push("walkingHeader");
+    recommendedExercises.push("bikingHeader");
+    recommendedExercises.push("swimmingHeader");
+  } else if(localStorage.getItem("goal") === "build-muscles") {
+    recommendedExercises.push("situpHeader");
+    recommendedExercises.push("dumbbellHeader");
+  } else if(localStorage.getItem("goal") === "improve-endurance") {
+    recommendedExercises.push("runningHeader");
+    recommendedExercises.push("walkingHeader");
+    recommendedExercises.push("bikingHeader");
+    recommendedExercises.push("swimmingHeader");
+    recommendedExercises.push("basketballHeader");
+  }
+  
+  recommendedExercises.forEach(id => {
+    document.getElementById(id).innerHTML += "&nbsp;&nbsp;[RECOMMENDED]"
+  });
 }
 
 function loadDefaultEvents() {
@@ -212,6 +249,7 @@ function generateWorkouts() {
             "event_name": `${dayAbbrevations[dayOfWeek]} ${localStorage.getItem("exercise")}`,
             "event_type": "workout",
             "description": "Hability generated workout!",
+            "calories": caloriesBurnedMap[localStorage.getItem("exercise")],
           })
           break;
         } else {
