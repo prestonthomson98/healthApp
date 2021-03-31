@@ -60,7 +60,7 @@ function showRecommendedExercises() {
     recommendedExercises.push("swimmingHeader");
     recommendedExercises.push("basketballHeader");
   }
-  
+
   recommendedExercises.forEach(id => {
     document.getElementById(id).innerHTML += "&nbsp;&nbsp;[RECOMMENDED]"
   });
@@ -303,9 +303,8 @@ function generateCalendarEvents() {
         "workout": "event-4",
       };
 
-      let newEventHTML = `<li class="cd-schedule__event">`;
+      let newEventHTML = `<li class="cd-schedule__event" id="${newEventInfo.event_id}">`;
 
-      console.log(newEventInfo.event_id)
       newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0" onclick="setInspectedEvent('${newEventInfo.event_id}');">`;
       newEventHTML += `<em class="cd-schedule__name">${eventName}</em>`;
       newEventHTML += `</a>`;
@@ -330,4 +329,33 @@ function setInspectedEvent(event_id) {
   localStorage.set("inspect_event", event_id);
   console.log(event_id);
   alert("HELLO! EVent is " + event_id)
+}
+
+async function scrollToWorkoutEvents() {
+  let allEvents = JSON.parse(localStorage.getItem("events"));
+
+  // Get all workout event ids
+  let workoutEventIds = [];
+  for (let dayOfWeek in allEvents) {
+    let dayEventsInfo = allEvents[dayOfWeek];
+    for (let i = 0; i < dayEventsInfo.length; i++) {
+      if(dayEventsInfo[i]["event_type"] === "workout") {
+        workoutEventIds.push(dayEventsInfo[i]["event_id"]);
+      }
+    }
+  }
+
+  workoutEventIds.reverse();
+  for (let i = 0; i < workoutEventIds.length; i++) {
+    const event_id = workoutEventIds[i];
+
+    let workoutElement = document.getElementById(event_id);
+    workoutElement.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+
+    await sleep(300);
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
