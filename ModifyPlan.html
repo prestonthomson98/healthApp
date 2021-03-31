@@ -8,6 +8,7 @@
   <script src="./assets/js/handleState.js" type="text/javascript"></script>
   <script src="./bootstrap/js/jquery.min.js"></script>
   <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+  <link href="./fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
 
@@ -39,11 +40,16 @@
     </div>
 
     <div class="mb-3">
-      <select class="form-select" aria-label="Select Sex" id="sexInput" name="sex" required>
-        <option value="" disabled selected>Select Sex</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
+      <div>
+        <label for="floatingInput">Sex</label>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="sex" id="sexInputMale" autocomplete="off" value="male">
+        <label class="btn btn-outline-dark" for="sexInputMale"><i class="fas fa-mars"></i></label>
+      
+        <input type="radio" class="btn-check" name="sex" id="sexInputFemale" autocomplete="off" value="female">
+        <label class="btn btn-outline-dark" for="sexInputFemale"><i class="fas fa-venus"></i></label>
+      </div>
     </div>
 
     <div class="form-floating mb-3">
@@ -66,25 +72,51 @@
     </div>
 
     <div class="mb-3">
-      <select class="form-select" aria-label="Select Exercise" id="exerciseInput" name="exercise" required>
-        <option value="" disabled selected>Select an Exercise</option>
-        <option value="run">Running</option>
-        <option value="walk">Walking</option>
-        <option value="bike">Biking</option>
-        <option value="swim">Swimming</option>
-        <option value="basketball">Basketball</option>
-        <option value="situps">Sit-ups</option>
-        <option value="dumbbells">Dumbbells</option>
-      </select>
-      <small id="exerciseInputHelp" class="form-text text-muted">See a list of Hability supported exercises <a href="./WorkoutInfo.html">here</a>.</small>
+      <div>
+        <label for="floatingInput">Select Preferred Exercises</label>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        <input type="checkbox" class="btn-check" name="preferredExercises" id="runInput" autocomplete="off" value="run">
+        <label class="btn btn-outline-dark" for="runInput"><i class="fas fa-running"></i></label>
+      
+        <input type="checkbox" class="btn-check" name="preferredExercises" id="walkInput" autocomplete="off" value="walk">
+        <label class="btn btn-outline-dark" for="walkInput"><i class="fas fa-walking"></i></label>
+      
+        <input type="checkbox" class="btn-check" name="preferredExercises" id="bikeInput" autocomplete="off" value="bike">
+        <label class="btn btn-outline-dark" for="bikeInput"><i class="fas fa-biking"></i></label>
+
+        <input type="checkbox" class="btn-check" name="preferredExercises" id="swimInput" autocomplete="off" value="swim">
+        <label class="btn btn-outline-dark" for="swimInput"><i class="fas fa-swimmer"></i></label>
+      
+        <input type="checkbox" class="btn-check" name="preferredExercises" id="basketballInput" autocomplete="off" value="basketball">
+        <label class="btn btn-outline-dark" for="basketballInput"><i class="fas fa-basketball-ball"></i></label>
+      
+        <input type="checkbox" class="btn-check" name="preferredExercises" id="situpsInput" autocomplete="off" value="situps">
+        <label class="btn btn-outline-dark" for="situpsInput">
+          <i class="fas fa-pray"
+          style="-webkit-transform:rotate(-110deg); -moz-transform: rotate(-110deg); -ms-transform: rotate(-110deg); -o-transform: rotate(-110deg); transform: rotate(-110deg);">
+          </i>
+        </label>
+
+        <input type="checkbox" class="btn-check" name="preferredExercises" id="dumbbellsInput" autocomplete="off" value="dumbbells">
+        <label class="btn btn-outline-dark" for="dumbbellsInput"><i class="fas fa-dumbbell"></i></label>
+      </div>
+      <div>
+        <small id="exerciseInputHelp" class="form-text text-muted">See a list of Hability supported exercises <a href="./WorkoutInfo.html">here</a>.</small>
+      </div>
     </div>
 
     <div class="mb-3">
-      <select class="form-select" aria-label="Select Day or Night" id="dayOrNightInput" name="dayOrNight" required>
-        <option value="" disabled selected>Early Bird or Night Owl?</option>
-        <option value="day">Early Bird</option>
-        <option value="night">Night Owl</option>
-      </select>
+      <div>
+        <label for="floatingInput">Early Bird or Night Owl?</label>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="dayOrNight" id="dayOrNightInputDay" autocomplete="off" value="day">
+        <label class="btn btn-outline-dark" for="dayOrNightInputDay"><i class="fas fa-sun"></i></label>
+      
+        <input type="radio" class="btn-check" name="dayOrNight" id="dayOrNightInputNight" autocomplete="off" value="night">
+        <label class="btn btn-outline-dark" for="dayOrNightInputNight"><i class="fas fa-moon"></i></label>
+      </div>
     </div>
 
     <div class="form-floating mb-3">
@@ -112,7 +144,11 @@
     document.getElementById("nameInput").value = localStorage.getItem("name");
   }
   if(localStorage.getItem("sex") !== null) {
-    document.getElementById("sexInput").value = localStorage.getItem("sex");
+    if(localStorage.getItem("sex") === "male") {
+      document.getElementById("sexInputMale").checked = true;
+    } else {
+      document.getElementById("sexInputFemale").checked = true;
+    }
   }
   if(localStorage.getItem("age") !== null) {
     document.getElementById("ageInput").value = localStorage.getItem("age");
@@ -123,11 +159,18 @@
   if(localStorage.getItem("goal") !== null) {
     document.getElementById("goalInput").value = localStorage.getItem("goal");
   }
-  if(localStorage.getItem("exercise") !== null) {
-    document.getElementById("exerciseInput").value = localStorage.getItem("exercise");
+  if(localStorage.getItem("preferredExercises") !== null) {
+    const preferredExercises = JSON.parse(localStorage.getItem("preferredExercises"));
+    for(let index in preferredExercises) {
+      document.getElementById(`${preferredExercises[index]}Input`).checked = true;
+    }
   }
   if(localStorage.getItem("dayOrNight") !== null) {
-    document.getElementById("dayOrNightInput").value = localStorage.getItem("dayOrNight");
+    if(localStorage.getItem("dayOrNight") === "day") {
+      document.getElementById("dayOrNightInputDay").checked = true;
+    } else {
+      document.getElementById("dayOrNightInputNight").checked = true;
+    }
   }
   if(localStorage.getItem("earliest_start") !== null) {
     document.getElementById("earliest_start").value = localStorage.getItem("earliest_start");
@@ -139,10 +182,16 @@
     document.getElementById("durationInput").value = localStorage.getItem("duration");
   }
   $("#modifyPlanForm").submit((e) => {
+    const preferredExercises = [];
     const formData = new FormData(e.target);
     for(var pair of formData.entries()) {
-      localStorage.setItem(pair[0], pair[1]);
+      if(pair[0] === "preferredExercises"){
+        preferredExercises.push(pair[1]);
+      } else {
+        localStorage.setItem(pair[0], pair[1]);
+      }
     }
+    localStorage.setItem("preferredExercises", JSON.stringify(preferredExercises));
     window.location.href = "index.html";
     return false;
   });
