@@ -18,6 +18,7 @@ const caloriesBurnedMap = {
 
 function loadInitialState() {
   if (localStorage.getItem("initialized") === null) {
+    const preferredExercises = ["run", "bike", "situps"];
 
     // Default settings
     localStorage.setItem("name", "CMSC 434 Student");
@@ -25,7 +26,7 @@ function loadInitialState() {
     localStorage.setItem("age", "21");
     localStorage.setItem("weight", "130");
     localStorage.setItem("goal", "lose-weight");
-    localStorage.setItem("exercise", "run");
+    localStorage.setItem("preferredExercises", JSON.stringify(preferredExercises));
     localStorage.setItem("dayOrNight", "day");
     localStorage.setItem("duration", 60);
     localStorage.setItem("earliest_start", "07:00");
@@ -175,7 +176,10 @@ function generateWorkouts() {
   const bufferMinutes = 15;
   let allEvents = JSON.parse(localStorage.getItem("events"));
 
+  const preferredExercises = JSON.parse(localStorage.getItem("preferredExercises"));
+
   for (let dayOfWeek in allEvents) {
+    let randomlySelectedExercise = preferredExercises[Math.floor(Math.random() * preferredExercises.length)];
     let dayEventsInfo = allEvents[dayOfWeek];
     dayEventsInfo.sort((a, b) => convertTimeToSeconds(a.start_time) - convertTimeToSeconds(b.start_time));
 
@@ -198,6 +202,9 @@ function generateWorkouts() {
     }
     let endTimeSeconds = startTimeSeconds + exerciseDurationSeconds;
 
+    let event_name = `${dayAbbrevations[dayOfWeek]} ${randomlySelectedExercise}`;
+    let calories = caloriesBurnedMap[randomlySelectedExercise];
+
     if(localStorage.getItem("dayOrNight") === "night") {
       for (let i = free_intervals.length-1; i >= 0; i--) {
         // console.log(`${convertSecondsToTime(free_intervals[i]["start_time"])} ${convertSecondsToTime(startTimeSeconds)} ${convertSecondsToTime(endTimeSeconds)} ${convertSecondsToTime(free_intervals[i]["end_time"])}`);
@@ -207,18 +214,20 @@ function generateWorkouts() {
           dayEventsInfo.push({
             "start_time": convertSecondsToTime(startTimeSeconds),
             "end_time": convertSecondsToTime(endTimeSeconds),
-            "event_name": `${dayAbbrevations[dayOfWeek]} ${localStorage.getItem("exercise")}`,
+            event_name,
             "event_type": "workout",
             "description": "Hability generated workout!",
+            calories,
           })
           break;
         } else if(free_intervals[i]["end_time"] - exerciseDurationSeconds >= free_intervals[i]["start_time"]) {
           dayEventsInfo.push({
             "start_time": convertSecondsToTime(free_intervals[i]["end_time"] - exerciseDurationSeconds),
             "end_time": convertSecondsToTime(free_intervals[i]["end_time"]),
-            "event_name": `${dayAbbrevations[dayOfWeek]} ${localStorage.getItem("exercise")}`,
+            event_name,
             "event_type": "workout",
             "description": "Hability generated workout!",
+            calories,
           })
           break;
         } else {
@@ -237,19 +246,20 @@ function generateWorkouts() {
           dayEventsInfo.push({
             "start_time": convertSecondsToTime(startTimeSeconds),
             "end_time": convertSecondsToTime(endTimeSeconds),
-            "event_name": `${dayAbbrevations[dayOfWeek]} ${localStorage.getItem("exercise")}`,
+            event_name,
             "event_type": "workout",
             "description": "Hability generated workout!",
+            calories,
           })
           break;
         } else if(free_intervals[i]["start_time"] + exerciseDurationSeconds <= free_intervals[i]["end_time"]) {
           dayEventsInfo.push({
             "start_time": convertSecondsToTime(free_intervals[i]["start_time"]),
             "end_time": convertSecondsToTime(free_intervals[i]["start_time"] + exerciseDurationSeconds),
-            "event_name": `${dayAbbrevations[dayOfWeek]} ${localStorage.getItem("exercise")}`,
+            event_name,
             "event_type": "workout",
             "description": "Hability generated workout!",
-            "calories": caloriesBurnedMap[localStorage.getItem("exercise")],
+            calories,
           })
           break;
         } else {
