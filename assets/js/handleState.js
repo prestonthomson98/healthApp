@@ -60,7 +60,7 @@ function showRecommendedExercises() {
     recommendedExercises.push("swimmingHeader");
     recommendedExercises.push("basketballHeader");
   }
-  
+
   recommendedExercises.forEach(id => {
     document.getElementById(id).innerHTML += "&nbsp;&nbsp;[RECOMMENDED]"
   });
@@ -74,6 +74,7 @@ function loadDefaultEvents() {
     "event_name": "Breakfast",
     "event_type": "meal",
     "description": "breakfast of champs!",
+    "event_id": uuidv4(),
   }
 
   let late_breakfast = {
@@ -82,6 +83,7 @@ function loadDefaultEvents() {
     "event_name": "Breakfast",
     "event_type": "meal",
     "description": "breakfast of champs!",
+    "event_id": uuidv4(),
   }
 
   let early_event = {
@@ -90,6 +92,7 @@ function loadDefaultEvents() {
     "event_name": "Early Event",
     "event_type": "event",
     "description": "Early Event",
+    "event_id": uuidv4(),
   }
 
   let short_lunch = {
@@ -98,6 +101,7 @@ function loadDefaultEvents() {
     "event_name": "Lunch",
     "event_type": "meal",
     "description": "mid day meal baby",
+    "event_id": uuidv4(),
   };
 
   let long_lunch = {
@@ -106,6 +110,7 @@ function loadDefaultEvents() {
     "event_name": "SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH SUPER LONG LUNCH WITH ",
     "event_type": "meal",
     "description": "mid day meal baby",
+    "event_id": uuidv4(),
   }
 
   let thursday_lunch = {
@@ -114,6 +119,7 @@ function loadDefaultEvents() {
     "event_name": "Lunch w/ Greg",
     "event_type": "meal",
     "description": "mid day meal baby",
+    "event_id": uuidv4(),
   }
 
 
@@ -123,6 +129,7 @@ function loadDefaultEvents() {
     "event_name": "Dinner",
     "event_type": "meal",
     "description": "last supper",
+    "event_id": uuidv4(),
   }
 
   let group_project = {
@@ -131,6 +138,7 @@ function loadDefaultEvents() {
     "event_name": "Group Project",
     "event_type": "event",
     "description": "group project for CMSC434",
+    "event_id": uuidv4(),
   }
 
   let myEvents = {
@@ -217,7 +225,7 @@ function generateWorkouts() {
             event_name,
             "event_type": "workout",
             "description": "Hability generated workout!",
-            calories,
+            "event_id": uuidv4(),
           })
           break;
         } else if(free_intervals[i]["end_time"] - exerciseDurationSeconds >= free_intervals[i]["start_time"]) {
@@ -227,7 +235,7 @@ function generateWorkouts() {
             event_name,
             "event_type": "workout",
             "description": "Hability generated workout!",
-            calories,
+            "event_id": uuidv4(),
           })
           break;
         } else {
@@ -249,7 +257,7 @@ function generateWorkouts() {
             event_name,
             "event_type": "workout",
             "description": "Hability generated workout!",
-            calories,
+            "event_id": uuidv4(),
           })
           break;
         } else if(free_intervals[i]["start_time"] + exerciseDurationSeconds <= free_intervals[i]["end_time"]) {
@@ -259,7 +267,7 @@ function generateWorkouts() {
             event_name,
             "event_type": "workout",
             "description": "Hability generated workout!",
-            calories,
+            "event_id": uuidv4(),
           })
           break;
         } else {
@@ -295,9 +303,9 @@ function generateCalendarEvents() {
         "workout": "event-4",
       };
 
-      let newEventHTML = `<li class="cd-schedule__event">`;
+      let newEventHTML = `<li class="cd-schedule__event" id="${newEventInfo.event_id}">`;
 
-      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0">`;
+      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0" onclick="setInspectedEvent('${newEventInfo.event_id}');">`;
       newEventHTML += `<em class="cd-schedule__name">${eventName}</em>`;
       newEventHTML += `</a>`;
       newEventHTML += `</li>`;
@@ -308,4 +316,46 @@ function generateCalendarEvents() {
 
     dayNewEventsHTML.forEach(eventToAdd => document.getElementById(dayOfWeek + "_schedule").innerHTML += eventToAdd);
   }
+}
+
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+function setInspectedEvent(event_id) {
+  localStorage.set("inspect_event", event_id);
+  console.log(event_id);
+  alert("HELLO! EVent is " + event_id)
+}
+
+async function scrollToWorkoutEvents() {
+  let allEvents = JSON.parse(localStorage.getItem("events"));
+
+  // Get all workout event ids
+  let workoutEventIds = [];
+  for (let dayOfWeek in allEvents) {
+    let dayEventsInfo = allEvents[dayOfWeek];
+    for (let i = 0; i < dayEventsInfo.length; i++) {
+      if(dayEventsInfo[i]["event_type"] === "workout") {
+        workoutEventIds.push(dayEventsInfo[i]["event_id"]);
+      }
+    }
+  }
+
+  workoutEventIds.reverse();
+  for (let i = 0; i < workoutEventIds.length; i++) {
+    const event_id = workoutEventIds[i];
+
+    let workoutElement = document.getElementById(event_id);
+    workoutElement.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+
+    await sleep(300);
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
