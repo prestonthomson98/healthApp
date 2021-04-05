@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Modify Plan</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <script src="./assets/js/handleState.js" type="text/javascript"></script>
+  <script src="./bootstrap/js/jquery.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+  <style>
+       
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightcoral;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">Hability</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-linkactive" aria-current="page" href="Calendar.html">Calendar</a>
+      <a class="nav-link "  href="ModifyPlan.html">Modify Plan</a>
+      <a class="nav-link" href="WorkoutInfo.html">Workout Cheatsheet</a>
+    </div>
+    </div>
+  </div>
+</nav>
+  
+<div class="container" style="margin-bottom: 2%;">
+  <div class="jumbotron text-center" style="margin-top: 2%; margin-bottom: 2%;">
+    <h1>Add Event</h1>
+  </div>
+
+  <form id="modifyPlanForm">
+    <!-- <label for="birthday">Birthday</label>
+    <span class="datepicker-toggle">
+        <span class="datepicker-toggle-button"></span>
+        <input type="date" class="datepicker-input">
+      </span> -->
+    <div class="form-floating mb-3 datepicker">
+        <input type="date" class="form-control">
+        <label for="floatingInput">Date</label>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <input type="time" id="earliest_start" class="form-control" name="earliest_start" min="00:00" max="23:59" required>
+      <label for="floatingInput">Start Time</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="time" id="latest_start" class="form-control" name="latest_start" min="00:00" max="23:59" required>
+      <label for="floatingInput">End Time</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="heightInput" required>
+        <label for="floatingInput">Title</label>
+      </div>
+
+      
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="heightInput" required>
+        <label for="floatingInput">Calories</label>
+      </div>
+
+      <div  class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked />
+        <label class="form-check-label" for="flexSwitchCheckChecked"> Meal</label >
+      </div>
+
+    
+  
+  
+ 
+
+    <div style = "border-top: 5%;">
+        <button type="submit" class="btn btn-primary">Add Event</button>
+    </div>
+   
+  </form>
+</div>
+</body>
+
+</html>

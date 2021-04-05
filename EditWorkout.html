@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Edit plan</title>
+      <style>
+          .one{
+              margin: 2% 15% 2% 15%;
+          }
+          
+         
+      </style>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+      <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+      <script src="./assets/js/handleState.js" type="text/javascript"></script>
+      <script src="./bootstrap/js/jquery.min.js"></script>
+      <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+ 
+      
+   </head>
+   <body>
+      <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <!-- 包括所有已编译的插件 -->
+      <script src="js/bootstrap.min.js"></script>
+
+      <!-- <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Home</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li ><a href="#">Calender</a></li>
+                <li class="active"><a href="#">Modify Plan</a></li>
+                <li><a href="#">Woukout Cheatsheet</a></li>
+                <li><a href="#">Hability</a></li>
+                
+            </ul>
+        </div>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightcoral;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Hability</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link" href="Calendar.html">Calendar</a>
+            <a class="nav-link" href="ModifyPlan.html">Modify Plan</a>
+            <a class="nav-link" href="WorkoutInfo.html">Workout Cheatsheet</a>
+          </div>
+          </div>
+        </div>
+      </nav>
+
+   
+    <div class="jumbotron text-center" style="margin-top: 2%; margin-bottom: 2%;">
+        <h1>February 28th 8am</h1>
+      </div>
+    <div class="badge bg-primary text-wrap" style ="margin: 0% 15% 0% 15%;">
+        <h3>Chest Strength</h3>
+    </div>
+    <div style ="margin: 2% 15% 2% 15%;">
+        <h3>Trainning Details:</h3>
+    </div>
+   
+     <!-- <br>
+            <span class="input-group-addon">Push up</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon float-left">Reps</span>
+            <br>
+            <span class="input-group-addon">Barbell Curls</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon float-left">lbs</span>
+            <br>
+            <span class="input-group-addon">Incline Dumbbell Press</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon float-left">lbs</span>
+            <br>
+            <span class="input-group-addon">Dumbbell Flyes</span>
+            <input type="text" class="form-control">
+            <span class="input-group-addon float-left">lbs</span>
+            <br> -->
+    <!-- <blockquote>
+        <div class="input-group one">
+            <span class="input-group-addon">Bench Press</span>
+            <input placeholder="60" type="text" class="form-control">
+            <span class="input-group-addon float-left">lbs</span>
+        </div>
+        <br>
+        <div class="input-group one">
+            <span class="input-group-addon">Push up</span>
+            <input placeholder="8" type="text" class="form-control">
+            <span class="input-group-addon float-left">Reps</span>
+        </div>
+        <br>
+        <div class="input-group one">
+            <span class="input-group-addon">Barbell Curls</span>
+            <input placeholder="25" type="text" class="form-control">
+            <span class="input-group-addon float-left">lbs</span>
+        </div>
+        <br>
+        <div class="input-group one">
+            <span class="input-group-addon">Dumbbell Flyes</span>
+            <input placeholder="20" type="text" class="form-control">
+            <span class="input-group-addon float-left">lbs</span>
+        </div>
+        <br>
+        <div class="input-group one">
+            <span class="input-group-addon">Incline Press</span>
+            <input placeholder="20" type="text" class="form-control">
+            <span class="input-group-addon float-left">lbs</span>
+        </div>
+        <br> -->
+
+
+          <form class="one">
+            
+              <div class="input-group mb-3 each" style ="margin-top: 2%;">
+                <span class="input-group-text">Push up</span>
+                <input placeholder="8" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">Reps</span>
+              </div>
+              <div class="input-group mb-3 each" style ="margin-top: 2%;">
+                <span class="input-group-text">Bench Press</span>
+                <input placeholder="50" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">libs</span>
+              </div>
+              <div class="input-group mb-3 each" style ="margin-top: 2%;">
+                <span class="input-group-text">Barbell Curls</span>
+                <input placeholder="10" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">libs</span>
+              </div>
+              <div class="input-group mb-3 each" style ="margin-top: 2%;">
+                <span class="input-group-text">Dumbbell Flyes</span>
+                <input placeholder="15" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">libs</span>
+              </div>
+              <div class="input-group mb-3 each" style ="margin-top: 2%;">
+                <span class="input-group-text">Incline Press</span>
+                <input placeholder="15" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">libs</span>
+              </div>
+          </form>
+         
+
+          
+
+        <button type="button" style ="margin: 2% 15% 2% 15%;" class="btn btn-success center">Update</button>
+      </blockquote>
+
+      <figure class="text-end">
+        <blockquote class="blockquote">
+          <p>A well-known quote, contained in a blockquote element.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </figcaption>
+      </figure>
+
+   </body>
+</html>
