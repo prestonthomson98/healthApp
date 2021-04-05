@@ -6,7 +6,9 @@
           .one{
               margin: 2% 15% 2% 15%;
           }
-          
+          .type{
+            background: hsl(31, 89%, 68%);
+          }
          
       </style>
       
@@ -17,6 +19,7 @@
       <script src="./assets/js/handleState.js" type="text/javascript"></script>
       <script src="./bootstrap/js/jquery.min.js"></script>
       <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+      <link href="./fontawesome/css/all.css" rel="stylesheet">
  
       
    </head>
@@ -50,8 +53,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-            <a class="nav-link" href="Calendar.html">Calendar</a>
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" href="Calendar.html">Calendar</a>
             <a class="nav-link" href="ModifyPlan.html">Modify Plan</a>
             <a class="nav-link" href="WorkoutInfo.html">Workout Cheatsheet</a>
           </div>
@@ -63,88 +66,38 @@
     <div class="jumbotron text-center" style="margin-top: 2%; margin-bottom: 2%;">
         <h1>February 28th 8am</h1>
       </div>
-    <div class="badge bg-primary text-wrap" style ="margin: 0% 15% 0% 15%;">
-        <h3>Chest Strength</h3>
+    <div class="badge type" style ="margin: 0% 15% 0% 15%;">
+        <h3><i class="fas fa-dumbbell"></i>  Chest Strength</h3>
     </div>
     <div style ="margin: 2% 15% 2% 15%;">
         <h3>Trainning Details:</h3>
     </div>
    
-     <!-- <br>
-            <span class="input-group-addon">Push up</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon float-left">Reps</span>
-            <br>
-            <span class="input-group-addon">Barbell Curls</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon float-left">lbs</span>
-            <br>
-            <span class="input-group-addon">Incline Dumbbell Press</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon float-left">lbs</span>
-            <br>
-            <span class="input-group-addon">Dumbbell Flyes</span>
-            <input type="text" class="form-control">
-            <span class="input-group-addon float-left">lbs</span>
-            <br> -->
-    <!-- <blockquote>
-        <div class="input-group one">
-            <span class="input-group-addon">Bench Press</span>
-            <input placeholder="60" type="text" class="form-control">
-            <span class="input-group-addon float-left">lbs</span>
-        </div>
-        <br>
-        <div class="input-group one">
-            <span class="input-group-addon">Push up</span>
-            <input placeholder="8" type="text" class="form-control">
-            <span class="input-group-addon float-left">Reps</span>
-        </div>
-        <br>
-        <div class="input-group one">
-            <span class="input-group-addon">Barbell Curls</span>
-            <input placeholder="25" type="text" class="form-control">
-            <span class="input-group-addon float-left">lbs</span>
-        </div>
-        <br>
-        <div class="input-group one">
-            <span class="input-group-addon">Dumbbell Flyes</span>
-            <input placeholder="20" type="text" class="form-control">
-            <span class="input-group-addon float-left">lbs</span>
-        </div>
-        <br>
-        <div class="input-group one">
-            <span class="input-group-addon">Incline Press</span>
-            <input placeholder="20" type="text" class="form-control">
-            <span class="input-group-addon float-left">lbs</span>
-        </div>
-        <br> -->
-
 
           <form class="one">
-            
               <div class="input-group mb-3 each" style ="margin-top: 2%;">
                 <span class="input-group-text">Push up</span>
-                <input placeholder="8" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input placeholder="8" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-text">Reps</span>
               </div>
               <div class="input-group mb-3 each" style ="margin-top: 2%;">
                 <span class="input-group-text">Bench Press</span>
-                <input placeholder="50" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input placeholder="50" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-text">libs</span>
               </div>
               <div class="input-group mb-3 each" style ="margin-top: 2%;">
                 <span class="input-group-text">Barbell Curls</span>
-                <input placeholder="10" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input placeholder="10" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-text">libs</span>
               </div>
               <div class="input-group mb-3 each" style ="margin-top: 2%;">
                 <span class="input-group-text">Dumbbell Flyes</span>
-                <input placeholder="15" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input placeholder="15" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-text">libs</span>
               </div>
               <div class="input-group mb-3 each" style ="margin-top: 2%;">
                 <span class="input-group-text">Incline Press</span>
-                <input placeholder="15" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input placeholder="15" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-text">libs</span>
               </div>
           </form>
@@ -152,17 +105,15 @@
 
           
 
-        <button type="button" style ="margin: 2% 15% 2% 15%;" class="btn btn-success center">Update</button>
+        <button id = "button" type="submit"  style ="margin: 2% 15% 2% 15%;" class="btn btn-success center">Update</button>
       </blockquote>
 
-      <figure class="text-end">
-        <blockquote class="blockquote">
-          <p>A well-known quote, contained in a blockquote element.</p>
-        </blockquote>
-        <figcaption class="blockquote-footer">
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </figcaption>
-      </figure>
+    
 
    </body>
+   <script>
+     document.getElementById("button").onclick = function () {
+       location.href = "./Calendar.html";
+     };
+   </script>
 </html>
