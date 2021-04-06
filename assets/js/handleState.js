@@ -1,4 +1,4 @@
-const dayAbbrevations = {
+var dayAbbrevations = {
   "monday": "Mon.",
   "tuesday": "Tues.",
   "wednesday": "Wed.",
@@ -6,7 +6,7 @@ const dayAbbrevations = {
   "friday": "Fri.",
 }
 
-const caloriesBurnedMap = {
+var caloriesBurnedMap = {
   "run": 350,
   "walk": 285,
   "bike": 600,
@@ -180,6 +180,7 @@ function clearWorkouts() {
 }
 
 function generateWorkouts() {
+  console.log("hohoho!");
   clearWorkouts();
   const bufferMinutes = 15;
   let allEvents = JSON.parse(localStorage.getItem("events"));
@@ -214,6 +215,7 @@ function generateWorkouts() {
     let calories = caloriesBurnedMap[randomlySelectedExercise];
 
     if(localStorage.getItem("dayOrNight") === "night") {
+      console.log("askdiijijaijdijaijda");
       for (let i = free_intervals.length-1; i >= 0; i--) {
         // console.log(`${convertSecondsToTime(free_intervals[i]["start_time"])} ${convertSecondsToTime(startTimeSeconds)} ${convertSecondsToTime(endTimeSeconds)} ${convertSecondsToTime(free_intervals[i]["end_time"])}`);
         if(startTimeSeconds < free_intervals[i]["start_time"]) {
@@ -314,7 +316,12 @@ function generateCalendarEvents() {
     }
     );
 
-    dayNewEventsHTML.forEach(eventToAdd => document.getElementById(dayOfWeek + "_schedule").innerHTML += eventToAdd);
+    dayNewEventsHTML.forEach(eventToAdd => {
+      var x = document.getElementById(dayOfWeek + "_schedule");
+      if (x !== null) {
+        x.innerHTML += eventToAdd;
+      };
+    });
   }
 }
 
@@ -350,7 +357,9 @@ async function scrollToWorkoutEvents() {
     const event_id = workoutEventIds[i];
 
     let workoutElement = document.getElementById(event_id);
-    workoutElement.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+    if (workoutElement !== null) {
+      workoutElement.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+    }
 
     await sleep(300);
   }
