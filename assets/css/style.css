@@ -3322,6 +3322,7 @@ a {
     margin-right: var(--space-md);
     transition: opacity 0.2s, background 0.2s;
 }
+
 .cd-schedule__event a {
     display: block;
     height: 100%;
@@ -3337,6 +3338,10 @@ a {
     .js .cd-schedule__event {
         width: 40%;
     }
+
+    /* .cd-schedule__event [data-event="event-1"] {
+      width: 10%;
+    } */
 }
 @media (min-width: 64rem) {
     .js .cd-schedule__event {
