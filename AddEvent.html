@@ -45,30 +45,30 @@
         <input type="date" class="datepicker-input">
       </span> -->
     <div class="form-floating mb-3 datepicker">
-        <input type="date" class="form-control">
+        <input id = "date" type="date" class="form-control">
         <label for="floatingInput">Date</label>
     </div>
 
 
     <div class="form-floating mb-3">
-      <input type="time" id="earliest_start" class="form-control" name="earliest_start" min="00:00" max="23:59" required>
+      <input type="time" id="start_time" class="form-control" name="earliest_start" min="00:00" max="23:59" required>
       <label for="floatingInput">Start Time</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="time" id="latest_start" class="form-control" name="latest_start" min="00:00" max="23:59" required>
+      <input type="time" id="end_time" class="form-control" name="latest_start" min="00:00" max="23:59" required>
       <label for="floatingInput">End Time</label>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="heightInput" required>
+        <input type="text" class="form-control" id="name" required>
         <label for="floatingInput">Title</label>
       </div>
 
       
 
     <div class="form-floating mb-3">
-        <input type="number" class="form-control" id="heightInput" required>
+        <input type="number" class="form-control" id="calories" required>
         <label for="floatingInput">Calories (in kcal)</label>
       </div>
 
@@ -90,9 +90,34 @@
 </body>
 
 <script>
+  loadInitialState();
   document.getElementById("button").onclick = function () {
-    location.href = "./Calendar.html";
+    let allEvents = JSON.parse(localStorage.getItem("events"));
+    let date = new Date (document.getElementById("date"));
+    let day = date.getDay();
+    let dayEventsInfo = allEvents["monday"];
+    let event_name = document.getElementById("name").value;
+    let start_time = document.getElementById("start_time").value;
+    let end_time = document.getElementById("end_time").value;
+  
+
+    console.log(day);
+    console.log();
+    dayEventsInfo.push({
+            "start_time": start_time,
+            "end_time": end_time,
+            event_name,
+            "event_type": "workout",
+            "description": "Own Event",
+            "event_id": uuidv4(),
+          });
+    // dayEventsInfo.sort((a, b) => convertTimeToSeconds(a.start_time) - convertTimeToSeconds(b.start_time));
+    console.log(dayEventsInfo);
+    localStorage.setItem("events", JSON.stringify(allEvents));
+    // window.location.href = "Calendar.html";
   };
+  
+  
 </script>
 
 </html>
