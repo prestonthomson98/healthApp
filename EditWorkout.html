@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Edit plan</title>
+      <style>
+          .one{
+              margin: 2% 15% 2% 15%;
+          }
+          .type{
+            background: hsl(31, 89%, 68%);
+          }
+         
+      </style>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+      <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+      <script src="./assets/js/handleState.js" type="text/javascript"></script>
+      <script src="./bootstrap/js/jquery.min.js"></script>
+      <script src="./bootstrap/js/bootstrap.bundle.js"></script>
+      <link href="./fontawesome/css/all.css" rel="stylesheet">
+ 
+      
+   </head>
+   <body>
+      <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <!-- 包括所有已编译的插件 -->
+      <script src="bootstrap/js/bootstrap.min.js"></script>
+
+      
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightcoral;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Hability</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" href="Calendar.html">Calendar</a>
+            <a class="nav-link" href="ModifyPlan.html">Modify Plan</a>
+            <a class="nav-link" href="WorkoutInfo.html">Workout Cheatsheet</a>
+          </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container" style="margin-bottom: 2%;">
+        <div class="jumbotron text-center" style="margin-top: 2%; margin-bottom: 2%;">
+          <h1>Type</h1>
+        </div>
+
+        <div class="badge type form-floating mb-3">
+          <!-- <i class="fas fa-dumbbell"></i> -->
+          <h3><i class="fas fa-dumbbell"></i> Workout Type </h3>
+        </div>
+      
+        <form id="addEventForm">       
+      
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="note" required>
+            <label for="floatingInput">Notes</label>
+        </div>
+
+          <div class="form-floating mb-3">
+              <input type="number" class="form-control" id="calories" required>
+              <label for="floatingInput">Calories Burned (in kcal)</label>
+          </div>       
+          <br>   
+          <button id = "button" type="submit" class="btn btn-primary">update</button>
+         
+        </form>
+      </div> 
+   </body>
+   <script>
+     loadInitialState();
+     document.getElementById("button").onclick = function () {
+      window.location.href = "Calendar.html";
+      return false;
+     };
+   </script>
+</html>

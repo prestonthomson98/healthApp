@@ -37,6 +37,7 @@ function loadInitialState() {
     localStorage.setItem("initialized", true);
   }
   console.log(localStorage);
+  console.log(JSON.parse(localStorage.getItem("events")))
 }
 
 function showNotification() {
@@ -180,7 +181,6 @@ function clearWorkouts() {
 }
 
 function generateWorkouts() {
-  console.log("hohoho!");
   clearWorkouts();
   const bufferMinutes = 15;
   let allEvents = JSON.parse(localStorage.getItem("events"));
@@ -307,7 +307,7 @@ function generateCalendarEvents() {
 
       let newEventHTML = `<li class="cd-schedule__event" id="${newEventInfo.event_id}">`;
 
-      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-content="" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0" onclick="setInspectedEvent('${newEventInfo.event_id}');">`;
+      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0" onclick="setInspectedEvent('${newEventInfo.event_id}');">`;
       newEventHTML += `<em class="cd-schedule__name">${eventName}</em>`;
       newEventHTML += `</a>`;
       newEventHTML += `</li>`;
@@ -333,9 +333,10 @@ function uuidv4() {
 }
 
 function setInspectedEvent(event_id) {
-  localStorage.set("inspect_event", event_id);
+  localStorage.setItem("selected_event", event_id);
   console.log(event_id);
   alert("HELLO! EVent is " + event_id)
+  window.location.href = "EditWorkout.html";
 }
 
 async function scrollToWorkoutEvents() {
