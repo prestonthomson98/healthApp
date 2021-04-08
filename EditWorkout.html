@@ -27,7 +27,7 @@
       <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
       <script src="https://code.jquery.com/jquery.js"></script>
       <!-- 包括所有已编译的插件 -->
-      <script src="js/bootstrap.min.js"></script>
+      <script src="bootstrap/js/bootstrap.min.js"></script>
 
       
 
@@ -66,7 +66,7 @@
 
           <div class="form-floating mb-3">
               <input type="number" class="form-control" id="calories" required>
-              <label for="floatingInput">Calories Burned(in kcal)</label>
+              <label for="floatingInput">Calories Burned (in kcal)</label>
           </div>       
           <br>   
           <button id = "button" type="submit" class="btn btn-primary">update</button>
@@ -75,8 +75,10 @@
       </div> 
    </body>
    <script>
+     loadInitialState();
      document.getElementById("button").onclick = function () {
       window.location.href = "Calendar.html";
+      return false;
      };
    </script>
 </html>

@@ -53,13 +53,11 @@
       
       <select class="form-select" aria-label="Select goal" id="dayInput" name="day" required>
         <option value="" disabled selected>Select a day</option>
-        <option value="sunday">Sunday</option>
         <option value="monday">Monday</option>
         <option value="tuesday">Tudeday</option>
         <option value="wednesday">Wednesday</option>
-        <option value="thursday">thursday</option>
+        <option value="thursday">Thursday</option>
         <option value="friday">Friday</option>
-        <option value="saturday">Saturday</option>
       </select>
     </div>
 
@@ -135,11 +133,6 @@
     if(document.getElementById("event").checked){
       type = "event"
     }
-    // function getDayOfWeek(date) {
-    //   const dayOfWeek = new Date(date).getDay();    
-    //   return isNaN(dayOfWeek) ? null : 
-    //   ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'][dayOfWeek];
-    // }
 
     if(type == "event"){
       dayEventsInfo.push({
@@ -147,7 +140,7 @@
             "end_time": end_time,
             event_name,
             "event_type": type,
-            "description": "Own Event",
+            description,
             "event_id": uuidv4(),
           });
     }
@@ -159,15 +152,16 @@
             event_name,
             "event_type": type,
             "calories": calories,
-            "description": "Own Event",
+            description,
             "event_id": uuidv4(),
           });
     }
     
-    // dayEventsInfo.sort((a, b) => convertTimeToSeconds(a.start_time) - convertTimeToSeconds(b.start_time));
+    dayEventsInfo.sort((a, b) => convertTimeToSeconds(a.start_time) - convertTimeToSeconds(b.start_time));
     console.log(dayEventsInfo);
     localStorage.setItem("events", JSON.stringify(allEvents));
     window.location.href = "Calendar.html";
+    return false;
   };
   
   
