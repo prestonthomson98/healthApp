@@ -41,48 +41,47 @@
         <span class="badge" style="background: hsl(199, 25%, 46%)">Meals</span>
         <span class="badge" style="background: hsl(271, 23%, 26%)">Events</span>
       </div>
+      <div style="padding-top:20px">
+        <button type="button" onClick="window.location='AddEvent.html';" class="btn btn-primary">Add Event</button>
+        <button type="button" id="randomizeWorkouts" class="btn btn-primary">Randomize Workouts</button>
+      </div>
     </div>
   </div>
-   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+      <form id="modifyEventForm">       
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Type</h5>
+        <h5 class="modal-title" id="eventModalTitle">Type</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="badge type form-floating mb-3">
-          <!-- <i class="fas fa-dumbbell"></i> -->
-          <span class="badge" style="background: hsl(31, 89%, 68%);">Workout Type</span>
+          <span class="badge" style="background: hsl(31, 89%, 68%);" id="eventBadge"><i class="fas fa-dumbbell"></i>Workout Type</span>
         </div>
       
-        <form id="addEventForm">       
-      
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="note" required>
+            <textarea class="form-control" placeholder="Notes" name="description" id="note" style="height: 100px" required></textarea>
             <label for="floatingInput">Notes</label>
-        </div>
+          </div>
 
-          <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="calories" required>
-              <label for="floatingInput">Calories Burned (in kcal)</label>
-          </div>       
-          <br> 
-        </form>
+          <div class="form-floating mb-3" id="caloriesFormInput">
+              <input type="number" class="form-control" name="calories" id="calories" required disabled>
+              <label for="floatingInput" id="caloriesLabel">Calories Burned (in kcal)</label>
+          </div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
+
   <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
     <div class="cd-schedule__timeline">
       <ul>
@@ -177,9 +176,27 @@
   </div> <!-- .cd-schedule -->
   <script>
     loadInitialState();
-    generateWorkouts();
+    generateWorkouts(false);
     generateCalendarEvents();
     scrollToWorkoutEvents();
+    $('#randomizeWorkouts').click(() => {
+      generateWorkouts(true);
+      location.reload();
+    });
+    $("#modifyEventForm").submit((e) => {
+      const formData = new FormData(e.target);
+      let update_fields = {}
+      for(var pair of formData.entries()) {
+        update_fields[pair[0]] = pair[1];
+      }
+      if(document.getElementById("eventBadge").innerHTML === "Event") {
+        delete update_fields["calories"]
+      }
+      updateEventFields(localStorage.getItem("selected_event"), update_fields);
+      console.log(update_fields);
+      $('#eventModal').modal('hide');
+      return false;
+    });
   </script>
 
   <script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->

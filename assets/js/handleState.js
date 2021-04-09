@@ -76,6 +76,7 @@ function loadDefaultEvents() {
     "event_type": "meal",
     "description": "breakfast of champs!",
     "event_id": uuidv4(),
+    "calories": 500,
   }
 
   let late_breakfast = {
@@ -85,6 +86,7 @@ function loadDefaultEvents() {
     "event_type": "meal",
     "description": "breakfast of champs!",
     "event_id": uuidv4(),
+    "calories": 750,
   }
 
   let early_event = {
@@ -103,6 +105,7 @@ function loadDefaultEvents() {
     "event_type": "meal",
     "description": "mid day meal baby",
     "event_id": uuidv4(),
+    "calories": 800,
   };
 
   let long_lunch = {
@@ -112,6 +115,7 @@ function loadDefaultEvents() {
     "event_type": "meal",
     "description": "mid day meal baby",
     "event_id": uuidv4(),
+    "calories": 1200,
   }
 
   let thursday_lunch = {
@@ -121,6 +125,7 @@ function loadDefaultEvents() {
     "event_type": "meal",
     "description": "mid day meal baby",
     "event_id": uuidv4(),
+    "calories": 910,
   }
 
 
@@ -131,6 +136,7 @@ function loadDefaultEvents() {
     "event_type": "meal",
     "description": "last supper",
     "event_id": uuidv4(),
+    "calories": 1500,
   }
 
   let group_project = {
@@ -180,8 +186,11 @@ function clearWorkouts() {
   localStorage.setItem("events", JSON.stringify(allEvents));
 }
 
-function generateWorkouts() {
-  clearWorkouts();
+function generateWorkouts(randomize) {
+  if (localStorage.getItem("generated_workouts") !== null && !randomize) {
+    return;
+  }
+  clearWorkouts(false);
   const bufferMinutes = 15;
   let allEvents = JSON.parse(localStorage.getItem("events"));
 
@@ -212,12 +221,9 @@ function generateWorkouts() {
     let endTimeSeconds = startTimeSeconds + exerciseDurationSeconds;
 
     let event_name = `${dayAbbrevations[dayOfWeek]} ${randomlySelectedExercise}`;
-    let calories = caloriesBurnedMap[randomlySelectedExercise];
 
     if(localStorage.getItem("dayOrNight") === "night") {
-      console.log("askdiijijaijdijaijda");
       for (let i = free_intervals.length-1; i >= 0; i--) {
-        // console.log(`${convertSecondsToTime(free_intervals[i]["start_time"])} ${convertSecondsToTime(startTimeSeconds)} ${convertSecondsToTime(endTimeSeconds)} ${convertSecondsToTime(free_intervals[i]["end_time"])}`);
         if(startTimeSeconds < free_intervals[i]["start_time"]) {
           continue;
         } else if(free_intervals[i]["start_time"] <= startTimeSeconds && endTimeSeconds <= free_intervals[i]["end_time"]) {
@@ -226,8 +232,9 @@ function generateWorkouts() {
             "end_time": convertSecondsToTime(endTimeSeconds),
             event_name,
             "event_type": "workout",
-            "description": "Hability generated workout!",
+            "description": capitalizeString(randomlySelectedExercise),
             "event_id": uuidv4(),
+            "calories": Math.round((endTimeSeconds - startTimeSeconds) / 3600 * caloriesBurnedMap[randomlySelectedExercise])
           })
           break;
         } else if(free_intervals[i]["end_time"] - exerciseDurationSeconds >= free_intervals[i]["start_time"]) {
@@ -236,8 +243,9 @@ function generateWorkouts() {
             "end_time": convertSecondsToTime(free_intervals[i]["end_time"]),
             event_name,
             "event_type": "workout",
-            "description": "Hability generated workout!",
+            "description": capitalizeString(randomlySelectedExercise),
             "event_id": uuidv4(),
+            "calories": Math.round((endTimeSeconds - startTimeSeconds) / 3600 * caloriesBurnedMap[randomlySelectedExercise])
           })
           break;
         } else {
@@ -249,7 +257,6 @@ function generateWorkouts() {
       }
     } else {
       for (let i = 0; i < free_intervals.length; i++) {
-        // console.log(`${convertSecondsToTime(free_intervals[i]["start_time"])} ${convertSecondsToTime(startTimeSeconds)} ${convertSecondsToTime(endTimeSeconds)} ${convertSecondsToTime(free_intervals[i]["end_time"])}`);
         if(startTimeSeconds > free_intervals[i]["end_time"]) {
           continue;
         } else if(free_intervals[i]["start_time"] <= startTimeSeconds && endTimeSeconds <= free_intervals[i]["end_time"]) {
@@ -258,8 +265,9 @@ function generateWorkouts() {
             "end_time": convertSecondsToTime(endTimeSeconds),
             event_name,
             "event_type": "workout",
-            "description": "Hability generated workout!",
+            "description": capitalizeString(randomlySelectedExercise),
             "event_id": uuidv4(),
+            "calories": Math.round((endTimeSeconds - startTimeSeconds) / 3600 * caloriesBurnedMap[randomlySelectedExercise])
           })
           break;
         } else if(free_intervals[i]["start_time"] + exerciseDurationSeconds <= free_intervals[i]["end_time"]) {
@@ -268,8 +276,9 @@ function generateWorkouts() {
             "end_time": convertSecondsToTime(free_intervals[i]["start_time"] + exerciseDurationSeconds),
             event_name,
             "event_type": "workout",
-            "description": "Hability generated workout!",
+            "description": capitalizeString(randomlySelectedExercise),
             "event_id": uuidv4(),
+            "calories": Math.round((endTimeSeconds - startTimeSeconds) / 3600 * caloriesBurnedMap[randomlySelectedExercise])
           })
           break;
         } else {
@@ -282,6 +291,7 @@ function generateWorkouts() {
     }
     dayEventsInfo.sort((a, b) => convertTimeToSeconds(a.start_time) - convertTimeToSeconds(b.start_time));
   }
+  localStorage.setItem("generated_workouts", true);
   localStorage.setItem("events", JSON.stringify(allEvents));
 }
 
@@ -307,7 +317,7 @@ function generateCalendarEvents() {
 
       let newEventHTML = `<li class="cd-schedule__event" id="${newEventInfo.event_id}">`;
 
-      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0" onclick="setInspectedEvent('${newEventInfo.event_id}');">`;
+      newEventHTML += `<a data-start="${newEventInfo.start_time}" data-end="${newEventInfo.end_time}" data-event="${eventTypeIndex[newEventInfo.event_type]}" href="#0" onclick="setInspectedEvent('${newEventInfo.event_id}');" data-bs-toggle="modal" data-bs-target="#eventModal">`;
       newEventHTML += `<em class="cd-schedule__name">${eventName}</em>`;
       newEventHTML += `</a>`;
       newEventHTML += `</li>`;
@@ -332,11 +342,69 @@ function uuidv4() {
   });
 }
 
+function retrieveEvent(event_id) {
+  let allEvents = JSON.parse(localStorage.getItem("events"));
+  for (let dayOfWeek in allEvents) {
+    let dayEventsInfo = allEvents[dayOfWeek];
+    for (let i = 0; i < dayEventsInfo.length; i++) {
+      if(dayEventsInfo[i]["event_id"] === event_id) {
+        return dayEventsInfo[i];
+      }
+    }
+  }
+  return null;
+}
+
+function updateEventFields(event_id, update_fields) {
+  let allEvents = JSON.parse(localStorage.getItem("events"));
+  for (let dayOfWeek in allEvents) {
+    let dayEventsInfo = allEvents[dayOfWeek];
+    for (let i = 0; i < dayEventsInfo.length; i++) {
+      if(dayEventsInfo[i]["event_id"] === event_id) {
+        for(key in update_fields) {
+          dayEventsInfo[i][key] = update_fields[key]
+        }
+      }
+    }
+  }
+  localStorage.setItem("events", JSON.stringify(allEvents));
+}
+
 function setInspectedEvent(event_id) {
   localStorage.setItem("selected_event", event_id);
-  console.log(event_id);
-  alert("HELLO! EVent is " + event_id)
-  window.location.href = "EditWorkout.html";
+  if (window.location.href.includes("index.html")) {
+    window.location.href = "Calendar.html";
+  } else {
+    let modalTitleElement = document.getElementById("eventModalTitle");
+    let eventBadgeElement = document.getElementById("eventBadge");
+    let noteElement = document.getElementById("note");
+    let caloriesElement = document.getElementById("calories");
+    let caloriesLabelElement = document.getElementById("caloriesLabel");
+    let caloriesInputFormElement = document.getElementById("caloriesFormInput");
+
+    let event = retrieveEvent(event_id);
+    modalTitleElement.innerHTML = event["event_name"]
+
+    caloriesInputFormElement.style.display = 'block';
+    caloriesElement.disabled = true;
+    if(event["event_type"] === "workout") {
+      eventBadgeElement.style.background = "hsl(31, 89%, 68%)";
+      eventBadgeElement.innerHTML = "Workout";
+      caloriesLabelElement.innerHTML = "Calories Burned";
+      caloriesElement.value = event["calories"];
+    } else if(event["event_type"] === "event") {
+      eventBadgeElement.style.background = "hsl(271, 23%, 26%)";
+      eventBadgeElement.innerHTML = "Event";
+      caloriesInputFormElement.style.display = 'none';
+    } else {
+      eventBadgeElement.style.background = "hsl(199, 25%, 46%)";
+      eventBadgeElement.innerHTML = "Meal";
+      caloriesLabelElement.innerHTML = "Calories Gained";
+      caloriesElement.value = event["calories"];
+      caloriesElement.disabled = false;
+    }
+    noteElement.value = event["description"];
+  }
 }
 
 async function scrollToWorkoutEvents() {
