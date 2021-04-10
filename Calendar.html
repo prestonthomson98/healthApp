@@ -37,13 +37,21 @@
     <div class="jumbotron text-center" style="margin-top: 2%; margin-bottom: 2%;">
       <h1>Calendar</h1>
       <div>
-        <span class="badge" style="background: hsl(31, 89%, 68%);">Workout</span>
-        <span class="badge" style="background: hsl(199, 25%, 46%)">Meals</span>
-        <span class="badge" style="background: hsl(271, 23%, 26%)">Events</span>
+        <p style="font-style: italic;"><i>Click on an event to see more details.</i></p>
       </div>
-      <div style="padding-top:20px">
-        <button type="button" onClick="window.location='AddEvent.html';" class="btn btn-primary">Add Event</button>
-        <button type="button" id="randomizeWorkouts" class="btn btn-primary">Randomize Workouts</button>
+      <div style="display:flex">
+        <div style="display: inline-block; float: left; padding-right: 30px">
+          <h3>
+            Key:
+            <span class="badge" style="background: hsl(31, 89%, 68%);">Workout</span>
+            <span class="badge" style="background: hsl(199, 25%, 46%)">Meals</span>
+            <span class="badge" style="background: hsl(271, 23%, 26%)">Events</span>
+          </h3>
+        </div>
+        <div style="display: inline-block; float: right; padding-left: 40px">
+          <button type="button" onClick="window.location='AddEvent.html';" class="btn btn-primary">Add Event</button>
+          <button type="button" id="randomizeWorkouts" class="btn btn-primary">Randomize Workouts</button>
+        </div>
       </div>
     </div>
   </div>
@@ -52,7 +60,7 @@
 <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form id="modifyEventForm">       
+      <form id="modifyEventForm">
       <div class="modal-header">
         <h5 class="modal-title" id="eventModalTitle">Type</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -61,7 +69,7 @@
         <div class="badge type form-floating mb-3">
           <span class="badge" style="background: hsl(31, 89%, 68%);" id="eventBadge"><i class="fas fa-dumbbell"></i>Workout Type</span>
         </div>
-      
+
           <div class="form-floating mb-3">
             <textarea class="form-control" placeholder="Notes" name="description" id="note" style="height: 100px" required></textarea>
             <label for="floatingInput">Notes</label>
@@ -71,7 +79,7 @@
               <input type="number" class="form-control" name="calories" id="calories" required disabled>
               <label for="floatingInput" id="caloriesLabel">Calories Burned (in kcal)</label>
           </div>
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
