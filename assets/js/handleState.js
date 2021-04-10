@@ -430,7 +430,7 @@ async function scrollToWorkoutEvents() {
       workoutElement.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
     }
 
-    await sleep(300);
+    await sleep(350);
   }
 }
 
