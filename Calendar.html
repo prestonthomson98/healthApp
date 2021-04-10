@@ -56,6 +56,30 @@
     </div>
   </div>
 
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+    <div id="stretchNotification" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="30000">
+      <div class="toast-header">
+        <strong class="me-auto"><i class="fa fa-bell"></i> Hourly Stretch Reminder!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id="notificationBody">
+        It's time for you to stretch and get some water!
+      </div>
+    </div>
+  </div>
+  
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+    <div id="workoutNotification" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="30000">
+      <div class="toast-header">
+        <strong class="me-auto"><i class="fa fa-clock"></i> Daily Workout Time!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id="notificationBody">
+        It's time for your daily workout!
+      </div>
+    </div>
+  </div>
+
 <!-- Modal -->
 <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -187,6 +211,8 @@
     generateWorkouts(false);
     generateCalendarEvents();
     scrollToWorkoutEvents();
+    showStretchNotification();
+    showWorkoutNotification();
     $('#randomizeWorkouts').click(() => {
       generateWorkouts(true);
       location.reload();
@@ -201,7 +227,6 @@
         delete update_fields["calories"]
       }
       updateEventFields(localStorage.getItem("selected_event"), update_fields);
-      console.log(update_fields);
       $('#eventModal').modal('hide');
       return false;
     });

@@ -40,8 +40,39 @@ function loadInitialState() {
   console.log(JSON.parse(localStorage.getItem("events")))
 }
 
-function showNotification() {
-  new bootstrap.Toast(document.getElementById('workoutNotification')).show();
+function showStretchNotification() {
+  let toExactMinute = 60000 - (new Date().getTime() % 60000);
+  setInterval(()=>{
+    new bootstrap.Toast(document.getElementById('stretchNotification')).show();
+  }, toExactMinute * 60);
+}
+
+function getDailyWorkoutTime(day) {
+  let allEvents = JSON.parse(localStorage.getItem("events"));
+  let dayEventsInfo = allEvents[day];
+  for (let i = 0; i < dayEventsInfo.length; i++) {
+    if(dayEventsInfo[i]["event_type"] === "workout") {
+      return convertTimeToSeconds(dayEventsInfo[i]["start_time"]);
+    }
+  }
+  
+  return null;
+}
+
+function showWorkoutNotification() {
+  let toExactMinute = 60000 - (new Date().getTime() % 60000);
+  setInterval(()=>{
+    let todayDate = new Date();
+    let days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+    if(todayDate.getDay() >= 1 && todayDate.getDay() <= 5) {
+      let today = days[(todayDate.getDay()) - 1];
+      let workoutStartTimeSeconds = getDailyWorkoutTime(today);
+      let currentTimeSeconds = (todayDate.getHours()) * 3600 + (todayDate.getMinutes()) * 60;
+      if(workoutStartTimeSeconds === currentTimeSeconds) {
+        new bootstrap.Toast(document.getElementById('workoutNotification')).show();
+      }
+    }
+  }, toExactMinute);
 }
 
 function showRecommendedExercises() {
