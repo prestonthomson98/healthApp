@@ -188,7 +188,15 @@
       if(pair[0] === "preferredExercises"){
         preferredExercises.push(pair[1]);
       } else {
-        localStorage.setItem(pair[0], pair[1]);
+        if(pair[0] === "dayOrNight") {
+          let currentDayOrNightValue = localStorage.getItem("dayOrNight");
+          if(currentDayOrNightValue !== pair[1]) {
+            localStorage.setItem(pair[0], pair[1]);
+            generateWorkouts(true);
+          }
+        } else {
+          localStorage.setItem(pair[0], pair[1]);
+        }
       }
     }
     localStorage.setItem("preferredExercises", JSON.stringify(preferredExercises));

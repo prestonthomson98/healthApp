@@ -14,6 +14,7 @@
   <script src="./bootstrap/js/jquery.min.js"></script>
   <script src="./bootstrap/js/bootstrap.bundle.js"></script>
   <script src="./assets/js/handleState.js" type="text/javascript"></script>
+  <link href="./fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
 
@@ -42,9 +43,21 @@
 </div>
 
 <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+  <div id="stretchNotification" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="30000">
+    <div class="toast-header">
+      <strong class="me-auto"><i class="fa fa-bell"></i> Hourly Stretch Reminder!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="notificationBody">
+      It's time for you to stretch and get some water!
+    </div>
+  </div>
+</div>
+
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
   <div id="workoutNotification" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="30000">
     <div class="toast-header">
-      <strong class="me-auto">Exercise time!</strong>
+      <strong class="me-auto"><i class="fa fa-clock"></i> Daily Workout Time!</strong>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body" id="notificationBody">
@@ -77,6 +90,8 @@
 <script>
   generateCalendarEvents();
   scrollToWorkoutEvents();
+  showStretchNotification();
+  showWorkoutNotification();
 </script>
 
 <div class='Weight Chart'>
