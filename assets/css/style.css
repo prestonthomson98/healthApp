@@ -7,6 +7,7 @@
 * {
     font: inherit;
 }
+
 html,
 body,
 div,
@@ -169,6 +170,7 @@ svg {
     color: hsl(240, 4%, 20%);
     color: var(--color-contrast-high, #313135);
 }
+
 :root {
     --space-unit: 1em;
     --space-xxxxs: calc(0.125 * var(--space-unit));
@@ -546,6 +548,7 @@ svg {
         max-width: calc(100% - 0.01px - var(--grid-gap, 1em));
     }
 }
+
 @media (min-width: 48rem) {
     .col\@sm {
         -ms-flex-positive: 1;
