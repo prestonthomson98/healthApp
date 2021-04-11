@@ -438,6 +438,23 @@ function setInspectedEvent(event_id) {
   }
 }
 
+async function findNextWorkout() {
+  let allEvents = JSON.parse(localStorage.getItem("events"));
+  
+  for (let dayOfWeek in allEvents) {
+    let dayEventsInfo = allEvents[dayOfWeek];
+    for (let i = 0; i < dayEventsInfo.length; i++) {
+      if(dayEventsInfo[i]["event_type"] === "workout") {
+        workout_name = dayEventsInfo[i]["event_name"];
+        workout_time = dayEventsInfo[i]["start_time"];
+        localStorage.setItem("next_workout", workout_name);
+        localStorage.setItem("next_workout_start_time", workout_time);
+        return;
+      }
+    }
+  }
+}
+
 async function scrollToWorkoutEvents() {
   let allEvents = JSON.parse(localStorage.getItem("events"));
 
