@@ -63,7 +63,7 @@
     </div>
 
     <div class="mb-3">
-      <select class="form-select" aria-label="Select goal" id="goalInput" name="goal" required>
+      <select class="form-select" aria-label="Select goal" id="goalInput" name="goal" onchange="preselectExercises();" required>
         <option value="" disabled selected>Select a Goal</option>
         <option value="lose-weight">Lose weight</option>
         <option value="build-muscles">Build muscles</option>
@@ -139,6 +139,25 @@
 </div>
 </body>
 <script>
+  function preselectExercises() {
+    $('input[type=checkbox]').prop('checked',false);
+    let goal = document.getElementById("goalInput").value;
+    if(goal === "lose-weight") {
+      document.getElementById(`runInput`).checked = true;
+      document.getElementById(`walkInput`).checked = true;
+      document.getElementById(`bikeInput`).checked = true;
+      document.getElementById(`swimInput`).checked = true;
+    } else if(goal === "build-muscles") {
+      document.getElementById(`situpsInput`).checked = true;
+      document.getElementById(`dumbbellsInput`).checked = true;
+    } else if(goal === "improve-endurance") {
+      document.getElementById(`runInput`).checked = true;
+      document.getElementById(`walkInput`).checked = true;
+      document.getElementById(`bikeInput`).checked = true;
+      document.getElementById(`swimInput`).checked = true;
+      document.getElementById(`basketballInput`).checked = true;
+    }
+  }
   loadInitialState();
   if(localStorage.getItem("name") !== null) {
     document.getElementById("nameInput").value = localStorage.getItem("name");
