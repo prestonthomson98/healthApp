@@ -109,6 +109,30 @@
   <canvas id="weight" width="350" height="160"></canvas>
   <script src="./assets/js/chart.js" type="text/javascript"></script>
   <script>
+  var green = 'rgb(128,240,128)';
+  var red = 'rgb(240,128,128)';
+  var blue = 'rgb(84,122,140)'
+  var above_color;
+  var below_color;
+  var goal = localStorage.getItem("goal");
+  var currWeight = parseInt(localStorage.getItem("weight"));
+  var goalWeight;
+  if (goal==="lose-weight"){
+    above_color = red;
+    below_color = green;
+    goalWeight = currWeight-5;
+  } else if (goal==="build-muscles"){
+    above_color = green;
+    below_color = red;
+    goalWeight = currWeight+5;
+  } else {
+    above_color = below_color = blue;
+    goalWeight = currWeight;
+  }
+  var goalBar = [];
+  var arraySize = 6;
+  while(arraySize--) goalBar[arraySize] = goalWeight;
+
   var ctx = document.getElementById('weight').getContext('2d');
   var myChart = new Chart(ctx, {
       type: 'line',
@@ -116,21 +140,21 @@
           labels: ['3/28', '4/4', '4/11', '4/18', '4/25'],
           datasets: [
             {
-              data: [163, 158, 155, 157, 153],
+              data: [currWeight+=3, currWeight-=7, currWeight-=4, currWeight+=5, currWeight-=6, localStorage.getItem('weight')],
               borderColor: [
                   'rgba(153, 102, 255, 1)'
               ],
               borderWidth: 1,
               fill: {
                 target: 1,
-                above: 'rgb(240,128,128)',   // Area will be red above the origin
-                below: 'rgb(128,240,128)'    // And blue below the origin
+                above: above_color,   // Area will be red above the origin
+                below: below_color    // And blue below the origin
               },
               bezierCurve: true,
               showLine: false,
           },
           {
-            data: [155, 155, 155, 155, 155],
+            data: goalBar,
             borderColor: [
             'rgb(63, 127, 191)',
             ],
@@ -175,23 +199,27 @@
   <script src="./assets/js/chart.js" type="text/javascript"></script>
   <script>
   var ctx = document.getElementById('calorie_deficit').getContext('2d');
-  var x = 0
+  var x = setGoalNetCal();
+  arraySize = 6;
+  var cal_goal_array = [];
+  while(arraySize--) cal_goal_array[arraySize] = setGoalNetCal();
+  var above_color;
   var myChart = new Chart(ctx, {
       type: 'line',
       data: {
           labels: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
           datasets: [
             {
-              data: [x+=50, x-=100, x-=250, x+=110, x-=50, x+=110],
+              data: [x+=200, x-=150, x-=250, x+=110, x-=50, x+=110],
               borderWidth: 1,
               fill: {
                 target: 1,
-                above: 'rgb(240,128,128)',   // Area will be red above the origin
-                below: 'rgb(128,240,128)'    // And blue below the origin
+                above: above_color,   // Area will be red above the origin
+                below: below_color    // And blue below the origin
               },
           },
           {
-            data: [-100, -100, -100, -100, -100, -100, -100],
+            data: cal_goal_array,
             borderColor: ['rgb(63, 127, 191)'],
             borderWidth: 2,
             pointRadius: 0

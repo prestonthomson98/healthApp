@@ -40,6 +40,17 @@ function loadInitialState() {
   console.log(JSON.parse(localStorage.getItem("events")))
 }
 
+function setGoalNetCal(){
+  goal = localStorage.getItem("goal");
+  if (goal==="lose-weight"){
+    return -200;
+  } else if (goal==="build-muscle"){
+    return 200;
+  } else {
+    return 0;
+  }
+}
+
 function showStretchNotification() {
   let toExactMinute = 60000 - (new Date().getTime() % 60000);
   setInterval(()=>{
