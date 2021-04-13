@@ -71,7 +71,7 @@
   generateWorkouts(false);
   findNextWorkout();
   document.getElementById('home_title').innerHTML = "Welcome to Hability, " + localStorage.getItem("name"); 
-  document.getElementById("next_workout").innerHTML = "Next Workout: " + localStorage.getItem('next_workout') + " " + localStorage.getItem("next_workout_start_time");
+  document.getElementById("next_workout").innerHTML = "Next Workout: " + localStorage.getItem('next_workout') + " @ " + localStorage.getItem("next_workout_start_time");
 </script>
 
 <div class="cd-schedule cd-schedule--loading js-cd-schedule">
