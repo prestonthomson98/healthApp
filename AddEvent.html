@@ -158,7 +158,6 @@
     }
     
     dayEventsInfo.sort((a, b) => convertTimeToSeconds(a.start_time) - convertTimeToSeconds(b.start_time));
-    console.log(dayEventsInfo);
     localStorage.setItem("events", JSON.stringify(allEvents));
     window.location.href = "Calendar.html";
     return false;
