@@ -129,6 +129,7 @@
     above_color = below_color = blue;
     goalWeight = currWeight;
   }
+  var defWeight = 130;
   var goalBar = [];
   var arraySize = 6;
   while(arraySize--) goalBar[arraySize] = goalWeight;
@@ -140,7 +141,7 @@
           labels: ['3/28', '4/4', '4/11', '4/18', '4/25'],
           datasets: [
             {
-              data: [currWeight+=3, currWeight-=7, currWeight-=4, currWeight+=5, currWeight-=6, localStorage.getItem('weight')],
+              data: [defWeight+=4, defWeight-=3, defWeight+=7, defWeight-=6, defWeight+= 6, localStorage.getItem('weight')],
               borderColor: [
                   'rgba(153, 102, 255, 1)'
               ],
