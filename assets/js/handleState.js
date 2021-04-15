@@ -312,7 +312,7 @@ function generateWorkouts(randomize) {
             "calories": Math.round((endTimeSeconds - startTimeSeconds) / 3600 * caloriesBurnedMap[randomlySelectedExercise])
           })
           break;
-        } else if(free_intervals[i]["start_time"] + exerciseDurationSeconds <= free_intervals[i]["end_time"]) {
+        } else if(startTimeSeconds <= free_intervals[i]["start_time"] + exerciseDurationSeconds && free_intervals[i]["start_time"] + exerciseDurationSeconds <= free_intervals[i]["end_time"]) {
           dayEventsInfo.push({
             "start_time": convertSecondsToTime(free_intervals[i]["start_time"]),
             "end_time": convertSecondsToTime(free_intervals[i]["start_time"] + exerciseDurationSeconds),

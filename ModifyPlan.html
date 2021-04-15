@@ -202,6 +202,7 @@
   }
   $("#modifyPlanForm").submit((e) => {
     const preferredExercises = [];
+    let regenerateWorkouts = false;
     const formData = new FormData(e.target);
     for(var pair of formData.entries()) {
       if(pair[0] === "preferredExercises"){
@@ -210,15 +211,18 @@
         if(pair[0] === "dayOrNight") {
           let currentDayOrNightValue = localStorage.getItem("dayOrNight");
           if(currentDayOrNightValue !== pair[1]) {
-            localStorage.setItem(pair[0], pair[1]);
-            generateWorkouts(true);
+            regenerateWorkouts = true;
           }
-        } else {
-          localStorage.setItem(pair[0], pair[1]);
+        } else if (pair[0] === "earliest_start" || pair[0] === "latest_start" || pair[0] === "preferredExercises" || pair[0] === "duration"){
+          regenerateWorkouts = true;
         }
+        localStorage.setItem(pair[0], pair[1]);
       }
     }
     localStorage.setItem("preferredExercises", JSON.stringify(preferredExercises));
+    if(regenerateWorkouts) {
+      generateWorkouts(true);
+    }
     window.location.href = "index.html";
     return false;
   });
