@@ -117,7 +117,7 @@
 
 <script>
   loadInitialState();
-  document.getElementById("button").onclick = function () {
+  $("#addEventForm").submit((e) => {
     let allEvents = JSON.parse(localStorage.getItem("events"));
     let day = document.getElementById("dayInput").value;
     let dayEventsInfo = allEvents[day];
@@ -161,7 +161,7 @@
     localStorage.setItem("events", JSON.stringify(allEvents));
     window.location.href = "Calendar.html";
     return false;
-  };
+  });
   
   
 </script>
