@@ -159,10 +159,11 @@
     
     dayEventsInfo.sort((a, b) => convertTimeToSeconds(a.start_time) - convertTimeToSeconds(b.start_time));
     localStorage.setItem("events", JSON.stringify(allEvents));
+    generateWorkouts(true);
     window.location.href = "Calendar.html";
     return false;
   });
-  
+
   
 </script>
 
